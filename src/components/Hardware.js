@@ -1,8 +1,11 @@
 import React from "react";
 import { Anchor, Box, Text, Heading } from "grommet";
 import { Update } from "grommet-icons";
+import { useIntl } from 'react-intl';
 
-export const Hardware = ({ data, ...rest }) => (
+export const Hardware = ({ data, ...rest }) => {
+  const intl = useIntl()
+  return (
   <Box direction="column" gap="large">
     <Box round pad="medium" direction="column" background="white" {...rest}>
       <Box gap="small">
@@ -15,7 +18,7 @@ export const Hardware = ({ data, ...rest }) => (
           </Text>
           <Box direction="row" align="center">
             <Box pad={{ horizontal: "small" }}>
-              <Anchor href="" label="Update" />
+              <Anchor href="" label={intl.formatMessage({id: "hardware.update"})} />
             </Box>
             <Update size="small" color="brand" />
           </Box>
@@ -64,5 +67,5 @@ export const Hardware = ({ data, ...rest }) => (
         </Box>
       </Box>
     </Box>
-  </Box>
-);
+  </Box>);
+}

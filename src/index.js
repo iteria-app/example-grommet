@@ -40,6 +40,9 @@ import {
   VirtualMachinesCard,
 } from "./components"
 import { hardware, utilization, vms, notification } from "./data"
+import {injectIntl, IntlProvider, FormattedRelative, useIntl} from 'react-intl';
+
+
 const userSession = {
   user: {
     name: "Shimi Shimi",
@@ -117,9 +120,26 @@ class AppBody extends Component {
     )
   }
 }
-const App = () => (
-  <Grommet theme={theme} full>
-    <AppBody />
-  </Grommet>
-)
-render(<App />, document.getElementById("root"))
+
+function loadLocaleData(locale) {
+  switch (locale) {
+    case 'sk':
+    case 'sk-SK':
+      return import('./compiled-lang/sk.json');
+    default:
+      return import('./compiled-lang/en.json');
+  }
+}
+const App = ({ locale, messages }) => {
+  return (
+    <IntlProvider locale={locale} messages={messages}>
+      <Grommet theme={theme} full>
+        <AppBody />
+      </Grommet>
+    </IntlProvider>
+  )
+}
+const locale = navigator.language
+loadLocaleData(locale).then((messages) => {
+  render(<App locale={locale}  messages={messages} />, document.getElementById("root"))
+})

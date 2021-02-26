@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3",
-    "grommet-theme-v1": "^0.1.0",
-    "prop-types": "^15.6.0",
     "grommet": "2.11.0",
     "grommet-icons": "4.4.0",
+    "grommet-theme-v1": "^0.1.0",
+    "prop-types": "^15.6.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-intl": "^5.13.1",
     "react-router-dom": "5.1.2",
+    "react-scripts": "4.0.3",
     "styled-components": "5.0.1"
   },
   "scripts": {
