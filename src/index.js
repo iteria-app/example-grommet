@@ -40,7 +40,7 @@ import {
   VirtualMachinesCard,
 } from "./components"
 import { hardware, utilization, vms, notification } from "./data"
-//import {injectIntl, IntlProvider, FormattedRelative, useIntl} from 'react-intl';
+import { IntlProvider} from 'react-intl';
 
 
 const userSession = {
