@@ -40,8 +40,9 @@ import {
   VirtualMachinesCard,
 } from "./components"
 import { hardware, utilization, vms, notification } from "./data"
-import { IntlProvider} from 'react-intl';
-
+import { IntlProvider } from 'react-intl';
+import { BrowserRouter, Route } from "react-router-dom"
+import HelloWorld from "./components/HelloWorld"
 
 const userSession = {
   user: {
@@ -133,9 +134,16 @@ function loadLocaleData(locale) {
 const App = ({ locale, messages }) => {
   return (
     <IntlProvider locale={locale} messages={messages}>
-      <Grommet theme={theme} full>
-        <AppBody />
-      </Grommet>
+      <BrowserRouter>
+        <Route exact path='/'>
+          <Grommet theme={theme} full>
+            <AppBody />
+          </Grommet>
+        </Route>
+        <Route path='/hello'>
+          <HelloWorld />
+        </Route>
+      </BrowserRouter>
     </IntlProvider>
   )
 }
