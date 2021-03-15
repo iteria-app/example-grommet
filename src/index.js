@@ -33,12 +33,10 @@ class AppBody extends Component {
 
   render() {
     return (
-      <Grommet theme={theme} full>
-        <Switch>
-          <Route exact path='/' component={Dashboard} />
-          <Route exact path='/hello' component={HelloWorld} />
-        </Switch>
-      </Grommet>
+      <Switch>
+        <Route exact path='/' component={Dashboard} />
+        <Route exact path='/hello' component={HelloWorld} />
+      </Switch>
     )
   }
 }
