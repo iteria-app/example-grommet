@@ -41,7 +41,7 @@ class AppBody extends Component {
   }
 }
 
-function loadLocaleData(locale) {
+function loadLocaleData(locale: string) {
   switch (locale) {
     case 'sk':
     case 'sk-SK':
@@ -50,7 +50,17 @@ function loadLocaleData(locale) {
       return import('./compiled-lang/en.json');
   }
 }
-const App = ({ locale, messages }) => {
+
+interface Message {
+  [key: string]: any;
+}
+
+type AppProps = {
+  locale: string,
+  messages: Message
+}
+
+const App: React.FC<AppProps> = ({ locale, messages }) => {
   return (
     <IntlProvider locale={locale} messages={messages}>
       <Router>
@@ -61,7 +71,9 @@ const App = ({ locale, messages }) => {
     </IntlProvider>
   )
 }
-const locale = navigator.language
+const locale = navigator.language;
+
+//@ts-ignore
 if(!window.__skip_render){
   loadLocaleData(locale).then((messages) => {
     render(<App locale={locale}  messages={messages} />, document.getElementById("root"))

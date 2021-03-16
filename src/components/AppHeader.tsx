@@ -10,8 +10,16 @@ import {
 } from "grommet";
 import { Down } from "grommet-icons";
 import { UserMenu } from ".";
+import { User, Items } from ".";
 
-export const AppHeader = ({ appName, appIcon, userSession, open }) => (
+interface AppHeaderProps {
+  appName: string;
+  appIcon: any;
+  userSession: {user: User, items: Items[]}
+  open?: boolean;
+}
+
+export const AppHeader: React.FC<AppHeaderProps> = ({ appName, appIcon, userSession, open }) => (
   <Box
     flex={false}
     tag="header"
@@ -43,7 +51,7 @@ export const AppHeader = ({ appName, appIcon, userSession, open }) => (
               <UserMenu
                 alignSelf="center"
                 user={userSession.user}
-                items={userSession.items}
+                items={userSession.items as []}
               />
             )}
           </Box>

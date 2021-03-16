@@ -1,14 +1,25 @@
 import React from "react";
 import { Box, Text, Heading } from "grommet";
-import { StatusBadge } from "../components";
+import { StatusBadge } from ".";
 
-const statusColors = {
+const statusColors:{[index: string]: string} = {
   Off: "status-critical",
   Suspended: "status-warning",
   On: "status-ok"
 };
 
-export const VirtualMachinesCard = ({ data, ...rest }) => (
+
+interface VirtualMachinesCardProps {
+  data: {
+    name: string,
+    count: number,
+    On: number,
+    Off: number,
+    Suspended: number
+  };
+}
+
+export const VirtualMachinesCard: React.FC<VirtualMachinesCardProps> = ({ data, ...rest }) => (
   <Box round pad="medium" direction="column" background="white" {...rest}>
     <Heading level="2" margin="none" size="small">
       {data.name}
@@ -22,7 +33,7 @@ export const VirtualMachinesCard = ({ data, ...rest }) => (
           <StatusBadge size="xlarge" background={statusColors[status]} />
           <Box pad="xsmall">
             <Text size="small" color="dark-1" margin={{ left: "xsmall" }}>
-              {status} ({data[status]})
+              {status} ({data[status as 'On'|'Off'|'Suspended']})
             </Text>
           </Box>
         </Box>
