@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Text } from "grommet";
 import { FormClose } from "grommet-icons";
 
-interface NotificationProps {
+type NotificationProps = {
   data: {
     action: string,
     date: string,

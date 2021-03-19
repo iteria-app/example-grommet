@@ -27,8 +27,6 @@ import { theme } from "./theme"
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { Dashboard, HelloWorld } from "./components"
-import * as sk from './compiled-lang/sk';
-import * as en from './compiled-lang/en';
 
 class AppBody extends Component {
   static contextType = ResponsiveContext
@@ -47,9 +45,9 @@ function loadLocaleData(locale: string) {
   switch (locale) {
     case 'sk':
     case 'sk-SK':
-      return sk;
+      return import('./compiled-lang/sk.json');
     default:
-      return en;
+      return import('./compiled-lang/en.json');
   }
 }
 

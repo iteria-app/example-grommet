@@ -1,10 +1,9 @@
 import React from "react";
-
 import { Box } from "grommet";
 import { BackgroundType } from "grommet/utils";
 
-interface StatusBadgeProps{
-  background: BackgroundType,
+type StatusBadgeProps = {
+  background: BackgroundType
   size?: string
 }
 

@@ -1,11 +1,8 @@
 import React from "react";
-
 import { Box } from "grommet";
 import { User } from "."
 
-interface AvatarProps extends User{
-
-}
+type AvatarProps = User
 
 
 export const Avatar: React.FC<AvatarProps> = ({ name, thumbnail, ...rest }) => (

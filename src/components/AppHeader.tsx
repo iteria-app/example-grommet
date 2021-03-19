@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   Anchor,
   Box,
@@ -12,11 +11,13 @@ import { Down } from "grommet-icons";
 import { UserMenu } from ".";
 import { User, Items } from ".";
 
-interface AppHeaderProps {
+
+
+type AppHeaderProps = {
   appName: string;
   appIcon: any;
-  userSession: {user: User, items: Items[]}
-  open?: boolean;
+  userSession: {user: User, items: Items[]};
+  open?: boolean
 }
 
 export const AppHeader: React.FC<AppHeaderProps> = ({ appName, appIcon, userSession, open }) => (
@@ -51,7 +52,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ appName, appIcon, userSess
               <UserMenu
                 alignSelf="center"
                 user={userSession.user}
-                items={userSession.items as []}
+                items={userSession.items}
               />
             )}
           </Box>

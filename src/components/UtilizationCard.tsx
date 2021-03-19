@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Text, Heading, Meter } from "grommet";
-import { StatusBadge } from ".";
+import { StatusBadge } from "../components";
 
 type Data = {
     name: string,
@@ -12,8 +12,8 @@ type Data = {
     percent: number,
 }
 
-interface UtilizationCardProps {
-  data: Data,
+type UtilizationCardProps = {
+  data: Data
   url?: string
 }
 

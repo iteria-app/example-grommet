@@ -1,21 +1,19 @@
 import React from "react";
-
 import { Menu, Text } from "grommet";
-
 import { Avatar } from ".";
 import { AlignSelfType } from "grommet/utils";
 
-export interface User{
-  name?: string , 
+export type User ={
+  name?: string 
   thumbnail?: string
 }
 
-export interface Items{
-  label: string,
+export type Items ={
+  label: string
   href: string
   }
 
-interface UserMenuProps{
+type UserMenuProps = {
   user: User,
   items: Items[],
   alignSelf?: AlignSelfType

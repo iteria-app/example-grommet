@@ -3,7 +3,7 @@ import { Anchor, Box, Text, Heading } from "grommet";
 import { Update } from "grommet-icons";
 import { useIntl } from 'react-intl';
 
-interface HardwareProps{
+type HardwareProps ={
   data:{
     Hypervisor: {
       name: string,

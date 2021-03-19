@@ -8,16 +8,21 @@ const statusColors:{[index: string]: string} = {
   On: "status-ok"
 };
 
-
-interface VirtualMachinesCardProps {
-  data: {
-    name: string,
-    count: number,
-    On: number,
-    Off: number,
-    Suspended: number
-  };
+type Data = {
+  name: string
+  count: number
+  On: number
+  Off: number
+  Suspended: number
 }
+
+type VirtualMachinesCardProps = {
+  data: Data
+}
+
+type StatusKey = keyof Data
+
+const statusKeys: StatusKey[] = ["On", "Off", "Suspended"]
 
 export const VirtualMachinesCard: React.FC<VirtualMachinesCardProps> = ({ data, ...rest }) => (
   <Box round pad="medium" direction="column" background="white" {...rest}>
@@ -28,12 +33,12 @@ export const VirtualMachinesCard: React.FC<VirtualMachinesCardProps> = ({ data, 
       {data.count}
     </Text>
     <Box gap="medium" pad={{ vertical: "small" }}>
-      {["On", "Suspended", "Off"].map(status => (
+      {statusKeys.map(status => (
         <Box direction="row" align="center" key={status}>
           <StatusBadge size="xlarge" background={statusColors[status]} />
           <Box pad="xsmall">
             <Text size="small" color="dark-1" margin={{ left: "xsmall" }}>
-              {status} ({data[status as 'On'|'Off'|'Suspended']})
+              {status} ({data[status]})
             </Text>
           </Box>
         </Box>
