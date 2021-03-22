@@ -2,7 +2,22 @@ import React from "react";
 import { Box, Text, Heading, Meter } from "grommet";
 import { StatusBadge } from "../components";
 
-export const UtilizationCard = ({ data, url, ...rest }) => (
+type Data = {
+    name: string,
+    value: string,
+    used: boolean,
+    usedValue: string,
+    available: boolean,
+    availableValue: string,
+    percent: number,
+}
+
+type UtilizationCardProps = {
+  data: Data
+  url?: string
+}
+
+export const UtilizationCard: React.FC<UtilizationCardProps> = ({ data, url }) => (
   <Box
     direction="row"
     justify="between"

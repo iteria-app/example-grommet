@@ -3,7 +3,20 @@ import { Anchor, Box, Text, Heading } from "grommet";
 import { Update } from "grommet-icons";
 import { useIntl } from 'react-intl';
 
-export const Hardware = ({ data, ...rest }) => {
+type HardwareProps ={
+  data:{
+    Hypervisor: {
+      name: string,
+      hardware: string
+    },
+    Hardware: {
+      name: string,
+      hardware: string
+    }
+  }
+}
+
+export const Hardware:React.FC<HardwareProps> = ({ data, ...rest }) => {
   const intl = useIntl()
   return (
   <Box direction="column" gap="large">

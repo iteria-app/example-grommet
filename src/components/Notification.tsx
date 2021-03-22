@@ -2,7 +2,15 @@ import React from "react";
 import { Box, Button, Text } from "grommet";
 import { FormClose } from "grommet-icons";
 
-export const Notification = ({ data, ...rest }) => (
+type NotificationProps = {
+  data: {
+    action: string,
+    date: string,
+    message: string
+  };
+}
+
+export const Notification: React.FC<NotificationProps> = ({ data, ...rest }) => (
   <Box
     round
     pad={{ horizontal: "small" }}

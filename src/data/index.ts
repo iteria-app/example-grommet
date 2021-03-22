@@ -4,7 +4,7 @@ export const utilization = [
     value: "100 GHz Total",
     used: true,
     usedValue: "58 GHz",
-    avaialble: false,
+    available: false,
     availableValue: "42 GHz",
     percent: 55
   },
@@ -13,7 +13,7 @@ export const utilization = [
     value: "200 GB Total",
     used: true,
     usedValue: "127 GB",
-    avaialble: false,
+    available: false,
     availableValue: "73 GB",
     percent: 78
   },
@@ -22,7 +22,7 @@ export const utilization = [
     value: "1000 TB Total",
     used: true,
     usedValue: "275 TB",
-    avaialble: false,
+    available: false,
     availableValue: "725 TB",
     percent: 27
   }

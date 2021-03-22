@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   Anchor,
   Box,
@@ -10,8 +9,18 @@ import {
 } from "grommet";
 import { Down } from "grommet-icons";
 import { UserMenu } from ".";
+import { User, Items } from ".";
 
-export const AppHeader = ({ appName, appIcon, userSession, open }) => (
+
+
+type AppHeaderProps = {
+  appName: string;
+  appIcon: any;
+  userSession: {user: User, items: Items[]};
+  open?: boolean
+}
+
+export const AppHeader: React.FC<AppHeaderProps> = ({ appName, appIcon, userSession, open }) => (
   <Box
     flex={false}
     tag="header"
