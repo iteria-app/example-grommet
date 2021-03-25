@@ -1,41 +1,10 @@
-import React, { useState } from "react";
-import { useQuery, gql } from "urql";
+import React from "react";
+import { DataTable, Text } from "grommet";
 import moment from "moment";
-import { DataTable, TextInput, Text } from "grommet";
 
-const SEARCH = gql`
-  query Search($search: String!) {
-    customers(where: { name: { _ilike: $search } }, order_by: { name: asc }) {
-      id
-      email
-      name
-      phone
-      address
-      avatarUrl
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
-export const Customers: React.FC<any> = () => {
-  const [inputSearch, setInputSearch] = useState("");
-  const search = "%" + inputSearch + "%";
-  const [result] = useQuery({ query: SEARCH, variables: { search } });
-  const { data, error, fetching } = result;
-
-  if (fetching) return <p>Loading...</p>;
-  if (error) return <p>Oh no... {error.message}</p>;
-  const customers = data.customers;
-
+export const CustomersTable: React.FC<any> = ({ customers }) => {
   return (
-    <div key="div">
-      <TextInput
-        autoFocus
-        value={inputSearch}
-        onChange={(event) => setInputSearch(event.target.value)}
-        placeholder="Search customer"
-      />
+    <div>
       <DataTable
         columns={[
           {

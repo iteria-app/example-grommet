@@ -27,7 +27,7 @@ import { theme } from "./theme";
 import { IntlProvider } from "react-intl";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Dashboard, HelloWorld } from "./components";
-import { database } from "./views/customer/app";
+import { CustomerListView } from "./views/customer/app";
 
 class AppBody extends Component {
   static contextType = ResponsiveContext;
@@ -37,7 +37,7 @@ class AppBody extends Component {
       <Switch>
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/hello" component={HelloWorld} />
-        <Route exact path="/customers" component={database} />
+        <Route exact path="/customers" component={CustomerListView} />
       </Switch>
     );
   }
