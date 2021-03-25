@@ -2,29 +2,32 @@ import React from "react";
 import { Box, Text, Heading } from "grommet";
 import { StatusBadge } from ".";
 
-const statusColors:{[index: string]: string} = {
+const statusColors: { [index: string]: string } = {
   Off: "status-critical",
   Suspended: "status-warning",
-  On: "status-ok"
+  On: "status-ok",
 };
 
 type Data = {
-  name: string
-  count: number
-  On: number
-  Off: number
-  Suspended: number
-}
+  name: string;
+  count: number;
+  On: number;
+  Off: number;
+  Suspended: number;
+};
 
 type VirtualMachinesCardProps = {
-  data: Data
-}
+  data: Data;
+};
 
-type StatusKey = keyof Data
+type StatusKey = keyof Data;
 
-const statusKeys: StatusKey[] = ["On", "Off", "Suspended"]
+const statusKeys: StatusKey[] = ["On", "Off", "Suspended"];
 
-export const VirtualMachinesCard: React.FC<VirtualMachinesCardProps> = ({ data, ...rest }) => (
+export const VirtualMachinesCard: React.FC<VirtualMachinesCardProps> = ({
+  data,
+  ...rest
+}) => (
   <Box round pad="medium" direction="column" background="white" {...rest}>
     <Heading level="2" margin="none" size="small">
       {data.name}
@@ -33,7 +36,7 @@ export const VirtualMachinesCard: React.FC<VirtualMachinesCardProps> = ({ data, 
       {data.count}
     </Text>
     <Box gap="medium" pad={{ vertical: "small" }}>
-      {statusKeys.map(status => (
+      {statusKeys.map((status) => (
         <Box direction="row" align="center" key={status}>
           <StatusBadge size="xlarge" background={statusColors[status]} />
           <Box pad="xsmall">
