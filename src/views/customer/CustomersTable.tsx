@@ -1,6 +1,6 @@
-import React from "react";
-import { DataTable, Text } from "grommet";
-import moment from "moment";
+import React from 'react'
+import { DataTable, Text } from 'grommet'
+import moment from 'moment'
 
 export const CustomersTable: React.FC<any> = ({ customers }) => {
   return (
@@ -8,45 +8,45 @@ export const CustomersTable: React.FC<any> = ({ customers }) => {
       <DataTable
         columns={[
           {
-            property: "name",
+            property: 'name',
             header: <Text>Name</Text>,
             primary: true,
           },
           {
-            property: "email",
+            property: 'email',
             header: <Text>Email</Text>,
             primary: true,
           },
           {
-            property: "address",
+            property: 'address',
             header: <Text>Location</Text>,
             primary: true,
             render: (customer) => (
               <Text>
                 {customer.address.city +
-                  ", " +
+                  ', ' +
                   customer.address.state +
-                  ", " +
+                  ', ' +
                   customer.address.country}
               </Text>
             ),
           },
           {
-            property: "phone",
+            property: 'phone',
             header: <Text>Phone</Text>,
             primary: true,
           },
           {
-            property: "createdAt",
+            property: 'createdAt',
             header: <Text>Registration date</Text>,
             primary: true,
             render: (customer) => (
-              <Text>{moment(customer.createdAt).format("DD/MM/YYYY")}</Text>
+              <Text>{moment(customer.createdAt).format('DD/MM/YYYY')}</Text>
             ),
           },
         ]}
         data={customers}
       />
     </div>
-  );
-};
+  )
+}
