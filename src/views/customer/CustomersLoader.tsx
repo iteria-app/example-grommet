@@ -19,7 +19,7 @@ const SEARCH = gql`
 
 export const CustomersLoader: React.FC<any> = ({ inputSearch }) => {
   const search = '%' + inputSearch + '%'
-  const [result] = useQuery({ query: SEARCH })
+  const [result] = useQuery({ query: SEARCH, variables: { search } })
   const { data, error, fetching } = result
 
   if (fetching) return <p>Loading...</p>
