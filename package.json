@@ -7,7 +7,6 @@
     "grommet": "2.11.0",
     "grommet-icons": "4.4.0",
     "grommet-theme-v1": "^0.1.0",
-    "moment": "^2.27.0",
     "prop-types": "^15.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
