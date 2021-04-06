@@ -20,13 +20,14 @@
 
 // window.__deps = dependencies
 
-import React, { Component } from "react"
-import { render } from "react-dom"
-import { Grommet, ResponsiveContext } from "grommet"
-import { theme } from "./theme"
-import { IntlProvider } from 'react-intl';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import { Dashboard, HelloWorld } from "./components"
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+import { Grommet, ResponsiveContext } from 'grommet'
+import { theme } from './theme'
+import { IntlProvider } from 'react-intl'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Dashboard, HelloWorld } from './components'
+import { CustomerListView } from './views/customer/CustomerListView'
 
 class AppBody extends Component {
   static contextType = ResponsiveContext
@@ -36,6 +37,7 @@ class AppBody extends Component {
       <Switch>
         <Route exact path='/' component={Dashboard} />
         <Route exact path='/hello' component={HelloWorld} />
+        <Route exact path='/customers' component={CustomerListView} />
       </Switch>
     )
   }
@@ -45,18 +47,18 @@ function loadLocaleData(locale: string) {
   switch (locale) {
     case 'sk':
     case 'sk-SK':
-      return import('./compiled-lang/sk.json');
+      return import('./compiled-lang/sk.json')
     default:
-      return import('./compiled-lang/en.json');
+      return import('./compiled-lang/en.json')
   }
 }
 
 interface Message {
-  [key: string]: any;
+  [key: string]: any
 }
 
 type AppProps = {
-  locale: string,
+  locale: string
   messages: Message
 }
 
@@ -71,11 +73,13 @@ const App: React.FC<AppProps> = ({ locale, messages }) => {
     </IntlProvider>
   )
 }
-const locale = navigator.language;
+const locale = navigator.language
 
 //@ts-ignore
-if(!window.__skip_render){
-  const messages = loadLocaleData(locale);
-  render(<App locale={locale}  messages={messages} />, document.getElementById("root"))
-  
+if (!window.__skip_render) {
+  const messages = loadLocaleData(locale)
+  render(
+    <App locale={locale} messages={messages} />,
+    document.getElementById('root')
+  )
 }
