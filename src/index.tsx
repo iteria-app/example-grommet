@@ -27,7 +27,7 @@ import { theme } from './theme'
 import { IntlProvider } from 'react-intl'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Dashboard, HelloWorld } from './components'
-import { CustomerListView } from './views/customer/app'
+import { CustomerListView } from './views/customer/CustomerListView'
 
 class AppBody extends Component {
   static contextType = ResponsiveContext

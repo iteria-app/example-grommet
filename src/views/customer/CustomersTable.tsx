@@ -1,6 +1,6 @@
 import React from 'react'
 import { DataTable, Text } from 'grommet'
-import moment from 'moment'
+import { FormattedDate } from 'react-intl'
 
 export const CustomersTable: React.FC<any> = ({ customers }) => {
   return (
@@ -41,7 +41,7 @@ export const CustomersTable: React.FC<any> = ({ customers }) => {
             header: <Text>Registration date</Text>,
             primary: true,
             render: (customer) => (
-              <Text>{moment(customer.createdAt).format('DD/MM/YYYY')}</Text>
+              <FormattedDate value={new Date(customer.createdAt)} />
             ),
           },
         ]}
