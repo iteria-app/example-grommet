@@ -10,3 +10,16 @@ query AllUtilization {
     available
   }
 }
+
+query AllCustomers {
+  customers(order_by: { name: asc }) {
+    updatedAt
+    phone
+    name
+    id
+    email
+    createdAt
+    avatarUrl
+    address
+  }
+}

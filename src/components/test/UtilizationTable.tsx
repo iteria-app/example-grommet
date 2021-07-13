@@ -1,8 +1,6 @@
-import React, { useState } from "react"
-import { useIntl } from "react-intl"
+import React from "react"
 import { Box, Grid, Text, Heading } from "grommet"
 export default function UtilizationTable({ utilization }: any) {
-  const intl = useIntl()
   console.log(utilization)
   return (
     <Box pad="medium">

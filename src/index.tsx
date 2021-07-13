@@ -27,6 +27,7 @@ import { theme } from "./theme"
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { Dashboard, HelloWorld } from "./components"
+import { CustomerListView } from "./components/Customers/CustomersListView";
 
 class AppBody extends Component {
   static contextType = ResponsiveContext
@@ -36,6 +37,7 @@ class AppBody extends Component {
       <Switch>
         <Route exact path='/' component={Dashboard} />
         <Route exact path='/hello' component={HelloWorld} />
+        <Route exact path='/customers' component={CustomerListView} />
       </Switch>
     )
   }
@@ -74,8 +76,8 @@ const App: React.FC<AppProps> = ({ locale, messages }) => {
 const locale = navigator.language;
 
 //@ts-ignore
-if(!window.__skip_render){
+if (!window.__skip_render) {
   const messages = loadLocaleData(locale);
-  render(<App locale={locale}  messages={messages} />, document.getElementById("root"))
-  
+  render(<App locale={locale} messages={messages} />, document.getElementById("root"))
+
 }
