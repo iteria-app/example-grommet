@@ -1,0 +1,25 @@
+query AllUtilization {
+  utilization(order_by: { name: asc }) {
+    id
+    value
+    usedValue
+    used
+    percent
+    name
+    availableValue
+    available
+  }
+}
+
+query AllCustomers {
+  customers(order_by: { name: asc }) {
+    updatedAt
+    phone
+    name
+    id
+    email
+    createdAt
+    avatarUrl
+    address
+  }
+}

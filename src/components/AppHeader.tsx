@@ -16,7 +16,7 @@ import { User, Items } from ".";
 type AppHeaderProps = {
   appName: string;
   appIcon: any;
-  userSession: {user: User, items: Items[]};
+  userSession: { user: User, items: Items[] };
   open?: boolean
 }
 
@@ -32,7 +32,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ appName, appIcon, userSess
   >
     <DropButton
       open={open}
-      onClose={() => {}}
+      onClose={() => { }}
       dropContent={
         <Box pad="small">
           <Text size="medium" margin="small">
@@ -94,6 +94,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ appName, appIcon, userSess
             <Anchor href="" label="Activity" margin="small" />
             <Anchor href="" label="Utilization" margin="small" />
             <Anchor href="" label="Virtual Machines" margin="small" />
+            <Anchor href="/customers" label="Customers" margin="small" />
           </Box>
         )
       }
