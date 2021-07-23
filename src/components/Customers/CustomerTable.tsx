@@ -1,11 +1,23 @@
 import React from 'react'
-import { DataTable, Text } from 'grommet'
+import { DataTable, InfiniteScroll, Text, Box } from 'grommet'
 import { FormattedDate } from 'react-intl'
 
-export const CustomersTable: React.FC<any> = ({ customers }) => {
+export const CustomersTable: React.FC<any> = ({ customers, limit, onBottomScroll, customerPostion }) => {
   return (
-    <div>
-      <DataTable
+    <>
+      <Box height="100px" overflow="auto">
+        <InfiniteScroll items={customers} step={3} onMore={onBottomScroll} {...customers}>
+          {(item: any, index: number) => (
+            <Box
+              key={index} pad='medium'
+              align='center'
+            >
+              <Text size='large' weight='bold' color='black'>{item.name}</Text>
+            </Box>
+          )}
+        </InfiniteScroll>
+      </Box>
+      {/* <DataTable
         columns={[
           {
             property: 'name',
@@ -46,7 +58,7 @@ export const CustomersTable: React.FC<any> = ({ customers }) => {
           },
         ]}
         data={customers}
-      />
-    </div>
+      /> */}
+    </>
   )
 }

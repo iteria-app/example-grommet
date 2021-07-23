@@ -11,8 +11,8 @@ query AllUtilization {
   }
 }
 
-query AllCustomers {
-  customers(order_by: { name: asc }) {
+query AllCustomers ($limit: Int) {
+  customers(limit: $limit) {
     updatedAt
     phone
     name
@@ -21,5 +21,10 @@ query AllCustomers {
     createdAt
     avatarUrl
     address
+  }
+  customerAggregate {
+    aggregate{
+     count
+    }
   }
 }
