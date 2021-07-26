@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  DataTable,
+  // DataTable,
   InfiniteScroll,
   Text,
   Box,
@@ -10,9 +10,9 @@ import {
   CardHeader,
   Grid
 } from 'grommet'
-import { FormattedDate } from 'react-intl'
+// import { FormattedDate } from 'react-intl'
 
-export const CustomersTable: React.FC<any> = ({ customers, limit, onBottomScroll, customerPostion }) => {
+export const CustomersTable: React.FC<any> = ({ customers, onBottomScroll }) => {
   return (
     <>
       <Box height="220px" margin={'0 auto'} width={'620px'} overflow="auto">

@@ -22,9 +22,4 @@ query AllCustomers ($limit: Int) {
     avatarUrl
     address
   }
-  customerAggregate {
-    aggregate{
-     count
-    }
-  }
 }
