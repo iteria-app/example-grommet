@@ -11,6 +11,7 @@ export const CustomersLoader: React.FC = () => {
 
   const initialSkeleton: object[] = []
   const customersSkeleton = [ ...initialSkeleton, customers ]
+  
   const onBottomScroll = () => {
     if (fetching === false) {
       setLimit(limit + 2)
