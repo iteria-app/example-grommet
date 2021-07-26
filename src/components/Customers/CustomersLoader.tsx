@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { CustomersTable } from './CustomerTable'
 import { useAllCustomersQuery } from '../../generated/graphql'
 export const CustomersLoader: React.FC = () => {
-  const [limit, setLimit] = useState<number>(2)
+  const paginationStep = 2
+  const [limit, setLimit] = useState<number>(paginationStep)
   const [result] = useAllCustomersQuery({ variables: { limit: limit } })
   const { data, error, fetching } = result
   
@@ -21,13 +22,13 @@ export const CustomersLoader: React.FC = () => {
   
   const onBottomScroll = () => {
     if (fetching === false) {
-      setLimit(limit + 2)
+      setLimit(limit + paginationStep)
     }
   }
 
   return (
     <div>
-      <CustomersTable customers={fetching ? customersSkeleton() : customers} onBottomScroll={onBottomScroll} />
+      <CustomersTable customers={fetching ? customersSkeleton() : customers} paginationStep={paginationStep} onBottomScroll={onBottomScroll} />
     </div>
   )
 }
