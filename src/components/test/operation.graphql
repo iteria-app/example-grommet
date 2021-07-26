@@ -1,25 +1,38 @@
-query AllUtilization {
-  utilization(order_by: { name: asc }) {
-    id
-    value
-    usedValue
-    used
-    percent
-    name
-    availableValue
-    available
+#TODO return this lines
+# query AllUtilization {
+#   utilization(order_by: { name: asc }) {
+#     id
+#     value
+#     usedValue
+#     used
+#     percent
+#     name
+#     availableValue
+#     available
+#   }
+# }
+
+query AllCustomers ($first: Int) {
+  customer_connection(first: $first) {
+    edges {
+      node {
+        updatedAt
+        phone
+        name
+        id
+        email
+        createdAt
+        avatarUrl
+        address
+      }
+       cursor
+    }
+    pageInfo {
+      startCursor
+      hasPreviousPage
+      hasNextPage
+      endCursor
+    }
   }
 }
 
-query AllCustomers ($limit: Int) {
-  customers(limit: $limit) {
-    updatedAt
-    phone
-    name
-    id
-    email
-    createdAt
-    avatarUrl
-    address
-  }
-}

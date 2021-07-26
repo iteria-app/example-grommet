@@ -5,7 +5,8 @@ import { CustomersLoader } from './CustomersLoader'
 
 export const CustomerListView = () => {
   const client = createClient({
-    url: 'https://iteria-app-example01.herokuapp.com/v1/graphql',
+    // url: 'https://iteria-app-example01.herokuapp.com/v1/graphql',
+    url: 'https://iteria-app-example01.herokuapp.com/v1beta1/relay',
   })
 
 

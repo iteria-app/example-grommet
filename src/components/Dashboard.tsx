@@ -14,7 +14,8 @@ import {
 } from "."
 import { Search, Menu } from "grommet-icons"
 import { hardware, utilization, vms, notification } from "../data"
-import { GeneratedUtilization } from './test/GeneratedUtilization'
+//TODO return this lines
+// import { GeneratedUtilization } from './test/GeneratedUtilization'
 import {
   createClient,
   Provider,
@@ -25,7 +26,7 @@ import {
 
 
 const client = createClient({
-  url: 'https://iteria-app-example01.herokuapp.com/v1/graphql',
+  url: 'https://iteria-app-example01.herokuapp.com/v1beta1/relay',
   exchanges: [debugExchange, cacheExchange, fetchExchange]
 });
 
@@ -82,7 +83,9 @@ export const Dashboard = () => {
             </Box>
           </Box>
           <Box gap='large' flex='grow' margin='medium'>
-            <GeneratedUtilization />
+             
+             {/* TODO return this lines */}
+            {/* <GeneratedUtilization /> */}
           </Box>
         </Box>
 
