@@ -1,11 +1,34 @@
 import React from 'react'
-import { DataTable, Text } from 'grommet'
-import { FormattedDate } from 'react-intl'
+import {
+  // DataTable,
+  InfiniteScroll,
+  Text,
+  Box,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Grid
+} from 'grommet'
+// import { FormattedDate } from 'react-intl'
 
-export const CustomersTable: React.FC<any> = ({ customers }) => {
+export const CustomersTable: React.FC<any> = ({ customers, onBottomScroll, paginationStep }) => {
   return (
-    <div>
-      <DataTable
+    <>
+      <Box height="220px" margin={'0 auto'} width={'620px'} overflow="auto">
+        <Grid gap="medium" columns={{ count: 'fit', size: 'small' }}>
+          <InfiniteScroll items={customers} step={paginationStep} onMore={onBottomScroll} {...customers}>
+            {(item: any, index: number) => (
+              <Card key={index} height={'200px'} pad="small" gap="medium" background="light-4">
+                <CardHeader><Text size='large' weight='bold' color='black'>{item.name}</Text></CardHeader>
+                <CardBody><Text size='large' weight='bold' color='black'>{item.address.city}</Text></CardBody>
+                <CardFooter><Text size='large' weight='bold' color='black'>{item.address.state}</Text></CardFooter>
+              </Card>
+            )}
+          </InfiniteScroll>
+        </Grid>
+      </Box>
+      {/* <DataTable
         columns={[
           {
             property: 'name',
@@ -46,7 +69,7 @@ export const CustomersTable: React.FC<any> = ({ customers }) => {
           },
         ]}
         data={customers}
-      />
-    </div>
+      /> */}
+    </>
   )
 }
