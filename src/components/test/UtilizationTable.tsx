@@ -15,15 +15,15 @@ export default function UtilizationTable({ utilization }: any) {
           >
             <Box gap="small">
               <Heading level="2" margin="none" size="small">
-                {data.name}
+                {data.node.name}
               </Heading>
               <Text color="gray" size="small">
                 {" "}
-                {data.id}{" "}
+                {data.node.id}{" "}
               </Text>
               <Text color="gray" size="small">
                 {" "}
-                {data.value}{" "}
+                {data.node.value}{" "}
               </Text>
             </Box>
           </Box>

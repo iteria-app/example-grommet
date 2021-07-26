@@ -14,8 +14,7 @@ import {
 } from "."
 import { Search, Menu } from "grommet-icons"
 import { hardware, utilization, vms, notification } from "../data"
-//TODO return this lines
-// import { GeneratedUtilization } from './test/GeneratedUtilization'
+import { GeneratedUtilization } from './test/GeneratedUtilization'
 import {
   createClient,
   Provider,
@@ -83,9 +82,7 @@ export const Dashboard = () => {
             </Box>
           </Box>
           <Box gap='large' flex='grow' margin='medium'>
-             
-             {/* TODO return this lines */}
-            {/* <GeneratedUtilization /> */}
+            <GeneratedUtilization />
           </Box>
         </Box>
 

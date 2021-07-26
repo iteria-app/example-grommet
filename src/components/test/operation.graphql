@@ -1,16 +1,19 @@
-#TODO return this lines
-# query AllUtilization {
-#   utilization(order_by: { name: asc }) {
-#     id
-#     value
-#     usedValue
-#     used
-#     percent
-#     name
-#     availableValue
-#     available
-#   }
-# }
+query AllUtilization {
+  utilization_connection(order_by: { name: asc }) {
+    edges {
+      node {
+        id
+        value
+        usedValue
+        used
+        percent
+        name
+        availableValue
+        available
+      }
+    }
+  }
+}
 
 query AllCustomers ($first: Int) {
   customer_connection(first: $first) {
