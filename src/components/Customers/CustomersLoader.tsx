@@ -10,7 +10,14 @@ export const CustomersLoader: React.FC = () => {
   const customers = data?.customers
 
   const initialSkeleton: object[] = []
-  const customersSkeleton = [ ...initialSkeleton, customers ]
+  const skeletonFromCustomers = [ ...initialSkeleton, customers ]
+
+  const customersSkeleton = () => {
+    if(skeletonFromCustomers){
+      return skeletonFromCustomers[0]
+    }
+    return []
+  }
   
   const onBottomScroll = () => {
     if (fetching === false) {
@@ -20,7 +27,7 @@ export const CustomersLoader: React.FC = () => {
 
   return (
     <div>
-      <CustomersTable customers={fetching ? customersSkeleton[0] : customers} onBottomScroll={onBottomScroll} />
+      <CustomersTable customers={fetching ? customersSkeleton() : customers} onBottomScroll={onBottomScroll} />
     </div>
   )
 }
