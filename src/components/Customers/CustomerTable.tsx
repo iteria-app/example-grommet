@@ -4,25 +4,39 @@ import {
   InfiniteScroll,
   Text,
   Box,
+  Button,
   Card,
   CardBody,
   CardFooter,
   CardHeader,
-  Grid
+  Grid,
+  // Icons
 } from 'grommet'
+import { Chat, ShareOption, UserManager } from 'grommet-icons';
+// import { Icons } from 'grommet-icons';
+
 // import { FormattedDate } from 'react-intl'
 
 export const CustomersTable: React.FC<any> = ({ customers, onBottomScroll, paginationStep }) => {
   return (
     <>
-      <Box margin={'0 auto'} width={'500px'} overflow="auto">
-        <Grid gap="medium" columns={{ count: 'fit', size: 'small' }}>
+      <Box margin={'80px auto'} width={'800px'} overflow="auto">
+        <Grid gap="medium" justify="center" columns={{ count: 'fit', size: 'medium' }}>
           <InfiniteScroll items={customers} step={paginationStep} onMore={onBottomScroll} {...customers}>
             {(item: any, index: number) => (
-              <Card key={index} width={'100%'} height={'400px'} pad="small" gap="medium" background="light-4">
-                <CardHeader><Text size='large' weight='bold' color='black'>{item.node.name}</Text></CardHeader>
-                <CardBody><Text size='large' weight='bold' color='black'>{item.node.address.city}</Text></CardBody>
-                <CardFooter><Text size='large' weight='bold' color='black'>{item.node.address.state}</Text></CardFooter>
+              <Card key={index} height="medium" width="medium" background="light-1" elevation="large">
+                <CardHeader pad="medium"><UserManager size="40px" color="black" /><Text size='30px' weight='bold' color='black'>{item.node.name}</Text></CardHeader>
+                <CardBody pad="medium" justify={"around"}>
+                  <Text size='25px' weight='bold' color='black'>{item.node.address.city} {item.node.address.state}</Text>
+                  <Text size='medium' weight='bold' color='black'>{item.node.address.street}</Text>
+                </CardBody>
+                <CardFooter pad={{ horizontal: "small", vertical: "small" }} background="light-2">
+                  <Button
+                    icon={<Chat size="40px" color="red" />}
+                    hoverIndicator
+                  />
+                  <Button icon={<ShareOption size="40px" color="black" />} hoverIndicator />
+                </CardFooter>
               </Card>
             )}
           </InfiniteScroll>
