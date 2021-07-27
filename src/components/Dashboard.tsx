@@ -25,7 +25,7 @@ import {
 
 
 const client = createClient({
-  url: 'https://iteria-app-example01.herokuapp.com/v1/graphql',
+  url: 'https://iteria-app-example01.herokuapp.com/v1beta1/relay',
   exchanges: [debugExchange, cacheExchange, fetchExchange]
 });
 

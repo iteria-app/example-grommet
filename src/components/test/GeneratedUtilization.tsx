@@ -12,7 +12,7 @@ export const GeneratedUtilization: React.FC = () => {
   return (
     <Box>
       <h1>Generated utilization</h1>
-      <UtilizationTable utilization={fetching ? [] : data?.utilization} />
+      <UtilizationTable utilization={fetching ? [] : data?.utilization_connection?.edges} />
     </Box>
   );
 };

@@ -3,7 +3,7 @@ import { createClient, Provider } from 'urql'
 import { Box } from 'grommet'
 import { CustomersLoader } from './CustomersLoader'
 
-export const CustomerListView = () => {
+export const CustomersPaginateList = () => {
   const client = createClient({
     url: 'https://iteria-app-example01.herokuapp.com/v1beta1/relay',
   })

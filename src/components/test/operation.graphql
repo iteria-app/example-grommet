@@ -1,25 +1,59 @@
 query AllUtilization {
-  utilization(order_by: { name: asc }) {
-    id
-    value
-    usedValue
-    used
-    percent
-    name
-    availableValue
-    available
+  utilization_connection(order_by: { name: asc }) {
+    edges {
+      node {
+        id
+        value
+        usedValue
+        used
+        percent
+        name
+        availableValue
+        available
+      }
+    }
   }
 }
 
 query AllCustomers {
-  customers(order_by: { name: asc }) {
-    updatedAt
-    phone
-    name
-    id
-    email
-    createdAt
-    avatarUrl
-    address
+  customer_connection(order_by: { name: asc }) {
+    edges {
+      node {
+        updatedAt
+        phone
+        name
+        id
+        email
+        createdAt
+        avatarUrl
+        address
+      }
+      cursor
+    }
   }
 }
+
+query PaginateAllCustomers ($first: Int) {
+  customer_connection(first: $first) {
+    edges {
+      node {
+        updatedAt
+        phone
+        name
+        id
+        email
+        createdAt
+        avatarUrl
+        address
+      }
+       cursor
+    }
+    pageInfo {
+      startCursor
+      hasPreviousPage
+      hasNextPage
+      endCursor
+    }
+  }
+}
+

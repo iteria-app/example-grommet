@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { DataTable, Text } from 'grommet'
 import { FormattedDate } from 'react-intl'
@@ -23,11 +24,11 @@ export const CustomersTable: React.FC<any> = ({ customers }) => {
             primary: true,
             render: (customer) => (
               <Text>
-                {customer.address.city +
+                {customer.node.address.city +
                   ', ' +
-                  customer.address.state +
+                  customer.node.address.state +
                   ', ' +
-                  customer.address.country}
+                  customer.node.address.country}
               </Text>
             ),
           },
@@ -41,7 +42,7 @@ export const CustomersTable: React.FC<any> = ({ customers }) => {
             header: <Text>Registration date</Text>,
             primary: true,
             render: (customer) => (
-              <FormattedDate value={new Date(customer.createdAt)} />
+              <FormattedDate value={new Date(customer.node.createdAt)} />
             ),
           },
         ]}

@@ -9,7 +9,7 @@ export const CustomersLoader: React.FC = () => {
 
   return (
     <div>
-      <CustomersTable customers={fetching ? [] : data?.customers} />
+      <CustomersTable customers={fetching ? [] : data?.customer_connection?.edges} />
     </div>
   )
 }
