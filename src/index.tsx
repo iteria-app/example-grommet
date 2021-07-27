@@ -28,6 +28,7 @@ import { IntlProvider } from 'react-intl';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { Dashboard, HelloWorld } from "./components"
 import { CustomerListView } from "./components/Customers/CustomersListView";
+import { CustomersPaginateList } from "./components/InfinitePaginate/CustomersPaginateList";
 
 class AppBody extends Component {
   static contextType = ResponsiveContext
@@ -38,6 +39,7 @@ class AppBody extends Component {
         <Route exact path='/' component={Dashboard} />
         <Route exact path='/hello' component={HelloWorld} />
         <Route exact path='/customers' component={CustomerListView} />
+        <Route exact path='/paginate' component={CustomersPaginateList} />
       </Switch>
     )
   }
