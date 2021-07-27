@@ -1,27 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { CustomersTable } from './CustomerTable'
 import { useAllCustomersQuery } from '../../generated/graphql'
 export const CustomersLoader: React.FC = () => {
-  const paginationStep = 2
-  const [first, setFirst] = useState<number>(4)
-  const [result] = useAllCustomersQuery({ variables: { first: first } })
+  const [result] = useAllCustomersQuery()
   const { data, error, fetching } = result
-  
+
   if (error) return <p>Oh no... {error.message}</p>
-  const customers = data?.customer_connection?.edges
-  console.log(data?.customer_connection,'data?.customer_connection'); 
-
-  console.log(customers,'customers'); 
-
-  const onBottomScroll = () => {
-    if (fetching === false) {
-      setFirst(first + paginationStep)
-    }
-  }
 
   return (
     <div>
-      <CustomersTable customers={customers} paginationStep={paginationStep} onBottomScroll={onBottomScroll} />
+      <CustomersTable customers={fetching ? [] : data?.customer_connection?.edges} />
     </div>
   )
 }

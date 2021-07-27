@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { CustomerPaginate } from './CustomerPaginate'
-import { useAllCustomersQuery } from '../../generated/graphql'
+import { usePaginateAllCustomersQuery } from '../../generated/graphql'
 export const CustomersLoader: React.FC = () => {
   const paginationStep = 2
   const [first, setFirst] = useState<number>(4)
-  const [result] = useAllCustomersQuery({ variables: { first: first } })
+  const [result] = usePaginateAllCustomersQuery({ variables: { first: first } })
   const { data, error, fetching } = result
   
   if (error) return <p>Oh no... {error.message}</p>

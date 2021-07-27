@@ -1,48 +1,12 @@
+
 import React from 'react'
-import {
-  // DataTable,
-  InfiniteScroll,
-  Text,
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Grid,
-  // Icons
-} from 'grommet'
-import { Chat, ShareOption, UserManager } from 'grommet-icons';
-// import { Icons } from 'grommet-icons';
+import { DataTable, Text } from 'grommet'
+import { FormattedDate } from 'react-intl'
 
-// import { FormattedDate } from 'react-intl'
-
-export const CustomersTable: React.FC<any> = ({ customers, onBottomScroll, paginationStep }) => {
+export const CustomersTable: React.FC<any> = ({ customers }) => {
   return (
-    <>
-      <Box margin={'80px auto'} width={'800px'} overflow="auto">
-        <Grid gap="medium" justify="center" columns={{ count: 'fit', size: 'medium' }}>
-          <InfiniteScroll items={customers} step={paginationStep} onMore={onBottomScroll} {...customers}>
-            {(item: any, index: number) => (
-              <Card key={index} height="medium" width="medium" background="light-1" elevation="large">
-                <CardHeader pad="medium"><UserManager size="40px" color="black" /><Text size='30px' weight='bold' color='black'>{item.node.name}</Text></CardHeader>
-                <CardBody pad="medium" justify={"around"}>
-                  <Text size='25px' weight='bold' color='black'>{item.node.address.city} {item.node.address.state}</Text>
-                  <Text size='medium' weight='bold' color='black'>{item.node.address.street}</Text>
-                </CardBody>
-                <CardFooter pad={{ horizontal: "small", vertical: "small" }} background="light-2">
-                  <Button
-                    icon={<Chat size="40px" color="red" />}
-                    hoverIndicator
-                  />
-                  <Button icon={<ShareOption size="40px" color="black" />} hoverIndicator />
-                </CardFooter>
-              </Card>
-            )}
-          </InfiniteScroll>
-        </Grid>
-      </Box>
-      {/* <DataTable
+    <div>
+      <DataTable
         columns={[
           {
             property: 'name',
@@ -60,11 +24,11 @@ export const CustomersTable: React.FC<any> = ({ customers, onBottomScroll, pagin
             primary: true,
             render: (customer) => (
               <Text>
-                {customer.address.city +
+                {customer.node.address.city +
                   ', ' +
-                  customer.address.state +
+                  customer.node.address.state +
                   ', ' +
-                  customer.address.country}
+                  customer.node.address.country}
               </Text>
             ),
           },
@@ -78,12 +42,12 @@ export const CustomersTable: React.FC<any> = ({ customers, onBottomScroll, pagin
             header: <Text>Registration date</Text>,
             primary: true,
             render: (customer) => (
-              <FormattedDate value={new Date(customer.createdAt)} />
+              <FormattedDate value={new Date(customer.node.createdAt)} />
             ),
           },
         ]}
         data={customers}
-      /> */}
-    </>
+      />
+    </div>
   )
 }

@@ -15,7 +15,25 @@ query AllUtilization {
   }
 }
 
-query AllCustomers ($first: Int) {
+query AllCustomers {
+  customer_connection(order_by: { name: asc }) {
+    edges {
+      node {
+        updatedAt
+        phone
+        name
+        id
+        email
+        createdAt
+        avatarUrl
+        address
+      }
+      cursor
+    }
+  }
+}
+
+query PaginateAllCustomers ($first: Int) {
   customer_connection(first: $first) {
     edges {
       node {
