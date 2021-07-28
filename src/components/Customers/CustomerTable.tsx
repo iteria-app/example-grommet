@@ -2,9 +2,20 @@ import React from 'react'
 import { DataTable, Text } from 'grommet'
 import { FormattedDate } from 'react-intl'
 import { useIntl } from "react-intl";
+import { sortCustomers } from './operations/sort'
+import { ObjectString } from './types'
 
-export const CustomersTable: React.FC<any> = ({ customers }) => {
+// import { pageByTotalAndPageSize } from './operations/pagination'
+// import { filterDataGrid, getFilterData, numberColumnType, uuidColumnType } from './operations/filter'
+
+export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onChangePageCustomers, page, offset, pageSize, onPageSize, onFilterCustomers, totalCustomers }) => {
   const intl = useIntl();
+
+  const handleSortCustomers = (sort: ObjectString) => {
+    console.log(sort, 'sort from customerTable');
+    sortCustomers(sort, onSortCustomers)
+  };
+
   return (
     <div>
       <DataTable
@@ -85,6 +96,9 @@ export const CustomersTable: React.FC<any> = ({ customers }) => {
           },
         ]}
         data={customers}
+        onSort={handleSortCustomers}
+        sortable
+        resizeable
       />
     </div>
   )
