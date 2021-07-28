@@ -1,0 +1,25 @@
+query filterCustomerGridData($where: customer_bool_exp! = {},$limit:Int!, $offset:Int!, $order_by: customer_order_by! = {}) {
+  customers(where: $where,limit: $limit,
+   offset: $offset, order_by: [$order_by]) {
+    bigInteger 
+    createdAt
+    date
+    email
+    float
+    id
+    seq
+    jsonB
+    manager
+    name
+    state
+    time
+    timeZ
+    timeStamp2
+    timeStampZ
+  }
+  customerAggregate(where: $where) {
+    aggregate{
+     count
+    }
+  }
+}
