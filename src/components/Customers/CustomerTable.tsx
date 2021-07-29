@@ -74,6 +74,7 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
               {
                 property: 'bigInteger',
                 header: <Text>bigInteger</Text>,
+                search: true
               },
               {
                 property: 'date',
