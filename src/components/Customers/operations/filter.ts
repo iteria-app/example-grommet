@@ -1,7 +1,7 @@
 import { ObjectString } from '../types'
-import { ObjectNumber } from '../types'
+import { ObjectType } from '../types'
 
-export const filterDataGrid = (filter: any, onFilterCustomers: any, onChangePageCustomers: any) => {
+export const filterDataGrid = (filter: ObjectString, onFilterCustomers: (event: ObjectString) => void, onChangePageCustomers: () => void) => {
     console.log(filter, 'filter');
 
     const filterColumnField = Object.keys(filter)[0]
@@ -10,14 +10,21 @@ export const filterDataGrid = (filter: any, onFilterCustomers: any, onChangePage
     console.log(filterValue, 'filterValue');
 
     onFilterCustomers(filteredQuery(filterValue, filterColumnField))
+    setCurrentPageToOne(onChangePageCustomers)
 }
 
-const filteredQuery = (filterValue: any, filterColumnField: any) => {
-    const filteredQueryForGraphQl: any = {}
+const filteredQuery = (filterValue: string, filterColumnField: string) => {
+    const filteredQueryForGraphQl: ObjectType = {}
     if (filterValue) {
         filteredQueryForGraphQl[filterColumnField] = { _eq: filterValue }
+    }else{
+        filteredQueryForGraphQl[filterColumnField] = {}
     }
     return filteredQueryForGraphQl
+}
+
+export const setCurrentPageToOne = (onChangePageCustomers: (event: number) => void) => {
+    onChangePageCustomers(1)
 }
 
 // const getQueryFromDataGrid = () => {

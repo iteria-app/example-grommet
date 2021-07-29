@@ -2,6 +2,6 @@ export interface ObjectString {
     [key: string]: string;
 }
 
-export interface ObjectNumber {
-    [key: string]: number;
+export interface ObjectType {
+    [key: string]: any
 }
