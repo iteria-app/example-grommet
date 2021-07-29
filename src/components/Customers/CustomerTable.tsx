@@ -19,6 +19,19 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
     sortCustomers(sort, onSortCustomers)
   };
 
+  const o1: any = {
+    name: {
+      _ilike: "%a%"
+    }
+  }
+
+  const o2: any = {
+    seq: {
+      _eq: 4
+    }
+  }
+  const o10:any = Object.assign(o1, o2)
+  console.log(o10,'o10'); 
 
   const handlePage = (page: ObjectString) => {
     console.log(page?.page, 'page.page')
@@ -28,8 +41,9 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
 
   const handleFilter = React.useCallback((filter) => {
     filterDataGrid(filter, onFilterCustomers, onChangePageCustomers)
+    // onFilterCustomers(o10)
 
-}, [onFilterCustomers, onChangePageCustomers]);
+  }, [onFilterCustomers, onChangePageCustomers]);
 
   return (
     <Grommet theme={tableTheme}>
