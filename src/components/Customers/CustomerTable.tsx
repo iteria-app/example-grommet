@@ -6,6 +6,7 @@ import { sortCustomers } from './operations/sort'
 import { ObjectString } from './types'
 import { tableTheme } from './components/tableTheme'
 import { CustomerLoading } from './components/CustomerLoading'
+import { CustomerPagination } from './components/CustomerPagination';
 
 // import { filterDataGrid, getFilterData, numberColumnType, uuidColumnType } from './operations/filter'
 
@@ -25,7 +26,7 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
     console.log(page?.page, 'page.page')
     const pageNumber = page?.page
     onChangePageCustomers(pageNumber)
-};
+  };
 
   return (
     <Grommet theme={tableTheme}>
@@ -112,18 +113,7 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
           <CustomerLoading />
         }
       </Box>
-      <Box>
-        <Text>Box Props</Text>
-        <Pagination
-          numberItems={totalCustomers}
-          page={page + 1}
-          step={pageSize}
-          onChange= {handlePage}
-          // background="brand"
-          // pad="medium"
-          margin="small"
-        />
-      </Box>
+      <CustomerPagination page={page} pageSize={pageSize} handlePage={handlePage} totalCustomers={totalCustomers} />
     </Grommet>
   )
 }
