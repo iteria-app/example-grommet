@@ -31,12 +31,13 @@ export const CustomersLoader: React.FC = () => {
   }
 
   const onFilterCustomers = (query: object) => {
+    console.log(query,'query'); 
     setFilter(query)
   }
 
   return (
     <div>
-      <CustomersTable customers={fetching ? [] : data?.customers} totalCustomers={totalCustomers} onChangePageCustomers={onChangePageCustomers} offset={offset} page={page} onPageSize={onPageSize} onSortCustomers={onSortCustomers} onFilterCustomers={onFilterCustomers} pageSize={pageSize}/>
+      <CustomersTable customers={data?.customers} totalCustomers={totalCustomers} onChangePageCustomers={onChangePageCustomers} offset={offset} page={page} onPageSize={onPageSize} onSortCustomers={onSortCustomers} onFilterCustomers={onFilterCustomers} pageSize={pageSize}/>
     </div>
   )
 }
