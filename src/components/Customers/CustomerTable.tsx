@@ -9,6 +9,7 @@ import { CustomerLoading } from './components/CustomerLoading'
 import { CustomerPagination } from './components/CustomerPagination';
 
 // import { filterDataGrid, getFilterData, numberColumnType, uuidColumnType } from './operations/filter'
+import { filterDataGrid } from './operations/filter'
 
 export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onChangePageCustomers, page, offset, pageSize, onPageSize, onFilterCustomers, totalCustomers }) => {
   const intl = useIntl();
@@ -18,15 +19,17 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
     sortCustomers(sort, onSortCustomers)
   };
 
-  const onSearch = (x: any) => {
-    console.log(x, 'x');
-  }
 
   const handlePage = (page: ObjectString) => {
     console.log(page?.page, 'page.page')
     const pageNumber = page?.page
     onChangePageCustomers(pageNumber)
   };
+
+  const handleFilter = React.useCallback((filter) => {
+    filterDataGrid(filter, onFilterCustomers, onChangePageCustomers)
+
+}, [onFilterCustomers, onChangePageCustomers]);
 
   return (
     <Grommet theme={tableTheme}>
@@ -103,10 +106,7 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
             data={customers}
             // placeholder={!customers ? loading() : null}
             onSort={handleSortCustomers}
-            // onSearch={onFilterCustomers}
-            onSearch={onSearch}
-            // paginate={paginate}
-            // step={3}
+            onSearch={handleFilter}
             resizeable
           />
           :
