@@ -5,12 +5,15 @@ import { useFilterCustomerGridDataQuery } from '../../generated/graphql'
 export const CustomersLoader: React.FC = () => {
   const [sort, setSortCustomers] = useState<object>();
   const [page, setPage] = useState<number>(0);
-  const [pageSize, setPageSize] = useState<number>(10);
+  const [pageSize, setPageSize] = useState<number>(3);
   const [filter, setFilter] = useState<object>()
   const offset = page * pageSize
   const [result] = useFilterCustomerGridDataQuery({
     variables: { where: filter, limit: pageSize, offset: offset, order_by: sort }
   })
+  console.log(page,'page'); 
+  console.log(pageSize,'pageSize'); 
+  console.log(offset,'offset'); 
   const { data, error, fetching } = result
 
   const totalCustomers: number | null = data?.customerAggregate?.aggregate?.count || null
@@ -22,7 +25,7 @@ export const CustomersLoader: React.FC = () => {
   }
 
   const onChangePageCustomers = (page: number) => {
-    setPage(page)
+    setPage(page - 1)
     console.log(page, 'page');
   }
 

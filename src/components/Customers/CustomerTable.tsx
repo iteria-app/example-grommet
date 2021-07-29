@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Grommet, DataTable, Spinner, Text } from 'grommet'
+import { Box, Grommet, DataTable, Pagination, Text } from 'grommet'
 import { FormattedDate } from 'react-intl'
 import { useIntl } from "react-intl";
 import { sortCustomers } from './operations/sort'
@@ -7,9 +7,6 @@ import { ObjectString } from './types'
 import { tableTheme } from './components/tableTheme'
 import { CustomerLoading } from './components/CustomerLoading'
 
-
-
-// import { pageByTotalAndPageSize } from './operations/pagination'
 // import { filterDataGrid, getFilterData, numberColumnType, uuidColumnType } from './operations/filter'
 
 export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onChangePageCustomers, page, offset, pageSize, onPageSize, onFilterCustomers, totalCustomers }) => {
@@ -23,6 +20,12 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
   const onSearch = (x: any) => {
     console.log(x, 'x');
   }
+
+  const handlePage = (page: ObjectString) => {
+    console.log(page?.page, 'page.page')
+    const pageNumber = page?.page
+    onChangePageCustomers(pageNumber)
+};
 
   return (
     <Grommet theme={tableTheme}>
@@ -101,13 +104,25 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
             onSort={handleSortCustomers}
             // onSearch={onFilterCustomers}
             onSearch={onSearch}
-            paginate={true}
-            step={3}
+            // paginate={paginate}
+            // step={3}
             resizeable
           />
           :
           <CustomerLoading />
         }
+      </Box>
+      <Box>
+        <Text>Box Props</Text>
+        <Pagination
+          numberItems={totalCustomers}
+          page={page + 1}
+          step={pageSize}
+          onChange= {handlePage}
+          // background="brand"
+          // pad="medium"
+          margin="small"
+        />
       </Box>
     </Grommet>
   )
