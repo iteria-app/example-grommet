@@ -16,49 +16,67 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
     console.log(columnFieldList, 'columnFieldList');
 
 
-    for (let i = 0; i < columnFieldList.length; i++) {
-        console.log(columnFieldList[i], 'columnFieldList[i]');
+    // for (let i = 0; i < columnFieldList.length; i++) {
+    //     console.log(columnFieldList[i], 'columnFieldList[i]');
+
+    //     //number
+    //     const integerColumns = ['seq', 'bigInteger']
+    //     const decimalColumns = ['float']
+    //     // const numberColumns = []
+    //     const includesDecimal = decimalColumns.includes(columnFieldList[i])
+    //     const includesInteger = integerColumns.includes(columnFieldList[i])
+
+
+    //     if (includesInteger || includesDecimal) {
+    //         setNumberGraphQuery(graphqlQuery, columnFieldList, i, includesInteger, filter)
+    //     } else {
+    //         setStringGraphQuery(i, columnFieldList, graphqlQuery)
+    //     }
+    // }
+    columnFieldList.forEach(columnField => {
+        console.log(columnField, 'columnField');
 
         //number
         const integerColumns = ['seq', 'bigInteger']
         const decimalColumns = ['float']
         // const numberColumns = []
-        const includesDecimal = decimalColumns.includes(columnFieldList[i])
-        const includesInteger = integerColumns.includes(columnFieldList[i])
+        const includesDecimal = decimalColumns.includes(columnField)
+        const includesInteger = integerColumns.includes(columnField)
 
 
         if (includesInteger || includesDecimal) {
-            setNumberGraphQuery(graphqlQuery, columnFieldList, i, includesInteger, filter)
+            setNumberGraphQuery(graphqlQuery, columnField, includesInteger, filter)
         } else {
-            setStringGraphQuery(i, columnFieldList, graphqlQuery)
+            setStringGraphQuery(columnField, graphqlQuery)
         }
-    }
+    })
 
     console.log(graphqlQuery, 'graphqlQuery');
     console.log(filter, 'filterrrr');
     onFilterCustomers(graphqlQuery)
 }
 
-const setNumberGraphQuery = (graphqlQuery: any, columnFieldList: any, i: any, includesInteger: any, filter: any) => {
+const setNumberGraphQuery = (graphqlQuery: any, columnFieldList: any, includesInteger: any, filter: any) => {
     let filterNumberValue = null
-    if (graphqlQuery[columnFieldList[i]]) {
+    if (graphqlQuery[columnFieldList]) {
         if (includesInteger) {
-            filterNumberValue = intReplaceValue(graphqlQuery[columnFieldList[i]])
+            filterNumberValue = intReplaceValue(graphqlQuery[columnFieldList])
         } else {
-            filterNumberValue = floatReplaceValue(graphqlQuery[columnFieldList[i]])
+            filterNumberValue = floatReplaceValue(graphqlQuery[columnFieldList])
         }
     }
     console.log(filterNumberValue, 'filterNumberValue');
-    console.log(filter[columnFieldList[i]], 'filter[columnFieldList[i]]');
+    console.log(filter[columnFieldList], 'filter[columnFieldList[i]]');
 
-    filter[columnFieldList[i]] = filterNumberValue
+    filter[columnFieldList] = filterNumberValue
 
-    setNumberQuery(filterNumberValue, graphqlQuery, columnFieldList, i)
+    setNumberQuery(filterNumberValue, graphqlQuery, columnFieldList)
 
     console.log(filterNumberValue, 'filterNumberValue');
 }
 
 const intReplaceValue = (filterValue: string) => {
+    console.log(filterValue,'filterValue'); 
     return filterValue.replace(/[^0-9]/g, '').slice(0, 19)
 }
 
@@ -66,15 +84,15 @@ const floatReplaceValue = (filterValue: string) => {
     return filterValue.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1')
 }
 
-const setStringGraphQuery = (i: number, columnFieldList: ObjectType, graphqlQuery: ObjectType) => {
-    graphqlQuery[columnFieldList[i]] = { _ilike: '%' + graphqlQuery[columnFieldList[i]] + '%' }
+const setStringGraphQuery = (columnFieldList: any, graphqlQuery: ObjectType) => {
+    graphqlQuery[columnFieldList] = { _ilike: '%' + graphqlQuery[columnFieldList] + '%' }
 }
 
-const setNumberQuery = (filterNumberValue: string | null, graphqlQuery: ObjectType, columnFieldList: ObjectType, i: any) => {
+const setNumberQuery = (filterNumberValue: string | null, graphqlQuery: ObjectType, columnFieldList: any) => {
     if (filterNumberValue) {
-        graphqlQuery[columnFieldList[i]] = { _eq: filterNumberValue }
+        graphqlQuery[columnFieldList] = { _eq: filterNumberValue }
     } else {
-        graphqlQuery[columnFieldList[i]] = { _eq: null }
+        graphqlQuery[columnFieldList] = { _eq: null }
     }
 }
 
