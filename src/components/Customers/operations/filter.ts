@@ -28,32 +28,34 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
 
 
         if (includesInteger || includesDecimal) {
-            let filterNumberValue = null
-            if (graphqlQuery[columnFieldList[i]]) {
-                if (includesInteger) {
-                    filterNumberValue = intReplaceValue(graphqlQuery[columnFieldList[i]])
-                } else {
-                    filterNumberValue = floatReplaceValue(graphqlQuery[columnFieldList[i]])
-                }
-            }
-            // setFilterNumberValue(graphqlQuery, columnFieldList, i, includesInteger, filterNumberValue)
-
-            console.log(filterNumberValue, 'filterNumberValue');
-            console.log(filter[columnFieldList[i]], 'filter[columnFieldList[i]]');
-
-            filter[columnFieldList[i]] = filterNumberValue
-
-            setNumberQuery(filterNumberValue, graphqlQuery, columnFieldList, i)
-
-            console.log(filterNumberValue, 'filterNumberValue');
+            setNumberGraphQuery(graphqlQuery, columnFieldList, i, includesInteger, filter)
         } else {
-            setStringQuery(i, columnFieldList, graphqlQuery)
+            setStringGraphQuery(i, columnFieldList, graphqlQuery)
         }
     }
 
     console.log(graphqlQuery, 'graphqlQuery');
     console.log(filter, 'filterrrr');
     onFilterCustomers(graphqlQuery)
+}
+
+const setNumberGraphQuery = (graphqlQuery: any, columnFieldList: any, i: any, includesInteger: any, filter: any) => {
+    let filterNumberValue = null
+    if (graphqlQuery[columnFieldList[i]]) {
+        if (includesInteger) {
+            filterNumberValue = intReplaceValue(graphqlQuery[columnFieldList[i]])
+        } else {
+            filterNumberValue = floatReplaceValue(graphqlQuery[columnFieldList[i]])
+        }
+    }
+    console.log(filterNumberValue, 'filterNumberValue');
+    console.log(filter[columnFieldList[i]], 'filter[columnFieldList[i]]');
+
+    filter[columnFieldList[i]] = filterNumberValue
+
+    setNumberQuery(filterNumberValue, graphqlQuery, columnFieldList, i)
+
+    console.log(filterNumberValue, 'filterNumberValue');
 }
 
 const intReplaceValue = (filterValue: string) => {
@@ -64,7 +66,7 @@ const floatReplaceValue = (filterValue: string) => {
     return filterValue.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1')
 }
 
-const setStringQuery = (i: number, columnFieldList: ObjectType, graphqlQuery: ObjectType) => {
+const setStringGraphQuery = (i: number, columnFieldList: ObjectType, graphqlQuery: ObjectType) => {
     graphqlQuery[columnFieldList[i]] = { _ilike: '%' + graphqlQuery[columnFieldList[i]] + '%' }
 }
 
