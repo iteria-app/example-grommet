@@ -57,18 +57,19 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
 }
 
 const setNumberGraphQuery = (graphqlQuery: any, columnFieldList: any, includesInteger: any, filter: any) => {
-    let filterNumberValue = null
+    const filterNumberValue: any = {value: null}
+    
     if (graphqlQuery[columnFieldList]) {
         if (includesInteger) {
-            filterNumberValue = intReplaceValue(graphqlQuery[columnFieldList])
+            filterNumberValue.value = intReplaceValue(graphqlQuery[columnFieldList])
         } else {
-            filterNumberValue = floatReplaceValue(graphqlQuery[columnFieldList])
+            filterNumberValue.value = floatReplaceValue(graphqlQuery[columnFieldList])
         }
     }
     console.log(filterNumberValue, 'filterNumberValue');
     console.log(filter[columnFieldList], 'filter[columnFieldList[i]]');
 
-    filter[columnFieldList] = filterNumberValue
+    filter[columnFieldList] = filterNumberValue?.value
 
     setNumberQuery(filterNumberValue, graphqlQuery, columnFieldList)
 
@@ -88,9 +89,9 @@ const setStringGraphQuery = (columnFieldList: any, graphqlQuery: ObjectType) => 
     graphqlQuery[columnFieldList] = { _ilike: '%' + graphqlQuery[columnFieldList] + '%' }
 }
 
-const setNumberQuery = (filterNumberValue: string | null, graphqlQuery: ObjectType, columnFieldList: any) => {
-    if (filterNumberValue) {
-        graphqlQuery[columnFieldList] = { _eq: filterNumberValue }
+const setNumberQuery = (filterNumberValue: ObjectType | null, graphqlQuery: ObjectType, columnFieldList: any) => {
+    if (filterNumberValue?.value) {
+        graphqlQuery[columnFieldList] = { _eq: filterNumberValue.value }
     } else {
         graphqlQuery[columnFieldList] = { _eq: null }
     }
