@@ -54,6 +54,7 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
     console.log(graphqlQuery, 'graphqlQuery');
     console.log(filter, 'filterrrr');
     onFilterCustomers(graphqlQuery)
+    setCurrentPageToOne(onChangePageCustomers)
 }
 
 const setNumberGraphQuery = (graphqlQuery: any, columnFieldList: any, includesInteger: any, filter: any) => {
@@ -173,9 +174,9 @@ const setNumberQuery = (filterNumberValue: ObjectType | null, graphqlQuery: Obje
 //     return filteredQueryForGraphQl[filterColumnField] = {}
 // }
 
-// export const setCurrentPageToOne = (onChangePageCustomers: (event: number) => void) => {
-//     onChangePageCustomers(1)
-// }
+export const setCurrentPageToOne = (onChangePageCustomers: (event: number) => void) => {
+    onChangePageCustomers(1)
+}
 
 /////////////////////////////////////////
 
