@@ -56,7 +56,7 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
               },
               {
                 property: 'id',
-                header: <Text>id</Text>,
+                header: <Text>id</Text>
               },
               {
                 property: 'seq',
@@ -72,7 +72,7 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
               },
               {
                 property: 'manager',
-                header: <Text>manager</Text>,
+                header: <Text>manager</Text>
               },
               {
                 property: 'bigInteger',
@@ -81,11 +81,12 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
               },
               {
                 property: 'date',
-                header: <Text>date</Text>,
+                header: <Text>date</Text>
               },
               {
                 property: 'float',
                 header: <Text>float</Text>,
+                search: true
               },
               {
                 property: 'jsonB',
@@ -96,15 +97,15 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
               },
               {
                 property: 'time',
-                header: <Text>time</Text>,
+                header: <Text>time</Text>
               },
               {
                 property: 'timeZ',
-                header: <Text>timeZ</Text>,
+                header: <Text>timeZ</Text>
               },
               {
                 property: 'state',
-                header: <Text>state</Text>,
+                header: <Text>state</Text>
               },
             ]}
             data={customers}

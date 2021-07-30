@@ -8,7 +8,7 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
 
     // for (let i = 0; i < 3; i++){
 
-    const filterDuplicate = { ...filter }
+    const graphqlQuery = { ...filter }
 
     //Object.keys(filter)
     // bigInteger, seq bude, zoznam v [bigInteger, seq] ktory dam do for cyklu pomoze mi Object.keys(filter).length z toho vytovrim for to bude lenght
@@ -18,34 +18,67 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
 
     for (let i = 0; i < columnFieldList.length; i++) {
         console.log(columnFieldList[i], 'columnFieldList[i]');
-        
+
         //number
         const integerColumns = ['seq', 'bigInteger']
-        if (integerColumns.includes(columnFieldList[i])) {
+        const decimalColumns = ['float']
+        // const numberColumns = []
+        const includesDecimal = decimalColumns.includes(columnFieldList[i])
+        const includesInteger = integerColumns.includes(columnFieldList[i])
+
+
+        if (includesInteger || includesDecimal) {
             let filterNumberValue = null
-            if (filterDuplicate[columnFieldList[i]]) {
-                filterNumberValue = filterDuplicate[columnFieldList[i]].replace(/[^0-9]/g, '').slice(0, 19)
+            if (graphqlQuery[columnFieldList[i]]) {
+                if (includesInteger) {
+                    filterNumberValue = graphqlQuery[columnFieldList[i]].replace(/[^0-9]/g, '').slice(0, 19)
+                } else {
+                    filterNumberValue = graphqlQuery[columnFieldList[i]].replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1')
+                }
             }
             console.log(filterNumberValue, 'filterNumberValue');
             console.log(filter[columnFieldList[i]], 'filter[columnFieldList[i]]');
             filter[columnFieldList[i]] = filterNumberValue
 
             if (filterNumberValue) {
-                filterDuplicate[columnFieldList[i]] = { _eq: filterNumberValue }
+                graphqlQuery[columnFieldList[i]] = { _eq: filterNumberValue }
             } else {
-                filterDuplicate[columnFieldList[i]] = { _eq: null }
+                graphqlQuery[columnFieldList[i]] = { _eq: null }
             }
 
             console.log(filterNumberValue, 'filterNumberValue');
-        }else{
-            filterDuplicate[columnFieldList[i]] = { _ilike: '%' + filterDuplicate[columnFieldList[i]] + '%' } 
+        } else {
+            graphqlQuery[columnFieldList[i]] = { _ilike: '%' + graphqlQuery[columnFieldList[i]] + '%' }
         }
     }
 
-    console.log(filterDuplicate, 'filterDuplicate');
+    console.log(graphqlQuery, 'graphqlQuery');
     console.log(filter, 'filterrrr');
-    onFilterCustomers(filterDuplicate)
+    onFilterCustomers(graphqlQuery)
 }
+
+// const numberColumn = (graphqlQuery, columnFieldList) =>{
+//     let filterNumberValue = null
+//     if (graphqlQuery[columnFieldList[i]]) {
+//         if (includesInteger) {
+//             filterNumberValue = graphqlQuery[columnFieldList[i]].replace(/[^0-9]/g, '').slice(0, 19)
+//         } else {
+//             filterNumberValue = graphqlQuery[columnFieldList[i]].replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1')
+//         }
+//     }
+//     console.log(filterNumberValue, 'filterNumberValue');
+//     console.log(filter[columnFieldList[i]], 'filter[columnFieldList[i]]');
+//     filter[columnFieldList[i]] = filterNumberValue
+
+//     if (filterNumberValue) {
+//         graphqlQuery[columnFieldList[i]] = { _eq: filterNumberValue }
+//     } else {
+//         graphqlQuery[columnFieldList[i]] = { _eq: null }
+//     }
+
+//     console.log(filterNumberValue, 'filterNumberValue');
+// }
+
 
 // const getFilteredQuery = (filter:ObjectType, filterValue: string, filterColumnField: string) => {
 //     const filteredQueryForGraphQl: ObjectType = {}
