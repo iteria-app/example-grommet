@@ -31,13 +31,14 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
             let filterNumberValue = null
             if (graphqlQuery[columnFieldList[i]]) {
                 if (includesInteger) {
-                    filterNumberValue = graphqlQuery[columnFieldList[i]].replace(/[^0-9]/g, '').slice(0, 19)
+                    filterNumberValue = intReplaceValue(graphqlQuery[columnFieldList[i]])
                 } else {
-                    filterNumberValue = graphqlQuery[columnFieldList[i]].replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1')
+                    filterNumberValue = floatReplaceValue(graphqlQuery[columnFieldList[i]])
                 }
             }
             console.log(filterNumberValue, 'filterNumberValue');
             console.log(filter[columnFieldList[i]], 'filter[columnFieldList[i]]');
+
             filter[columnFieldList[i]] = filterNumberValue
 
             if (filterNumberValue) {
@@ -48,13 +49,25 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
 
             console.log(filterNumberValue, 'filterNumberValue');
         } else {
-            graphqlQuery[columnFieldList[i]] = { _ilike: '%' + graphqlQuery[columnFieldList[i]] + '%' }
+            setStringFilterValue(i, columnFieldList, graphqlQuery)
         }
     }
 
     console.log(graphqlQuery, 'graphqlQuery');
     console.log(filter, 'filterrrr');
     onFilterCustomers(graphqlQuery)
+}
+
+const intReplaceValue = (filterValue: any) => {
+    return filterValue.replace(/[^0-9]/g, '').slice(0, 19)
+}
+
+const floatReplaceValue = (filterValue: any) => {
+    return filterValue.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1')
+}
+
+const setStringFilterValue = (i: any, columnFieldList: any, graphqlQuery: any) => {
+    graphqlQuery[columnFieldList[i]] = { _ilike: '%' + graphqlQuery[columnFieldList[i]] + '%' }
 }
 
 // const numberColumn = (graphqlQuery, columnFieldList) =>{
