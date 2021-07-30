@@ -4,41 +4,47 @@ import { ObjectType } from '../types'
 export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: ObjectString) => void, onChangePageCustomers: () => void) => {
     console.log(filter, 'filter');
 
-  
+
 
     // for (let i = 0; i < 3; i++){
 
-        const filterDuplicate = {...filter}
+    const filterDuplicate = { ...filter }
 
-        //Object.keys(filter)
-        // bigInteger, seq bude, zoznam v [bigInteger, seq] ktory dam do for cyklu pomoze mi Object.keys(filter).length z toho vytovrim for to bude lenght
-        const columnFieldList = Object.keys(filter)
-        console.log(columnFieldList,'columnFieldList'); 
+    //Object.keys(filter)
+    // bigInteger, seq bude, zoznam v [bigInteger, seq] ktory dam do for cyklu pomoze mi Object.keys(filter).length z toho vytovrim for to bude lenght
+    const columnFieldList = Object.keys(filter)
+    console.log(columnFieldList, 'columnFieldList');
 
-        const  integerColumns = ['seq', 'bigInteger']
+
+    for (let i = 0; i < columnFieldList.length; i++) {
+        console.log(columnFieldList[i], 'columnFieldList[i]');
         
-        for (let i = 0; i < columnFieldList.length; i++){
-            console.log(columnFieldList[i],'columnFieldList[i]'); 
-            
-            if(integerColumns.includes(columnFieldList[i])){
-                let filterNumberValue = null
-                if(filterDuplicate[columnFieldList[i]]){
-                    filterNumberValue = filterDuplicate[columnFieldList[i]].replace(/[^0-9]/g, '').slice(0,19)
-                    if(filterNumberValue === ""){
-                        filterNumberValue = null
-                    }
-                }
-
-                console.log(filterNumberValue,'filterNumberValue'); 
-                filter[columnFieldList[i]] = filterNumberValue
-                filterDuplicate[columnFieldList[i]] = { _eq:  filterNumberValue }
+        //number
+        const integerColumns = ['seq', 'bigInteger']
+        if (integerColumns.includes(columnFieldList[i])) {
+            let filterNumberValue = null
+            if (filterDuplicate[columnFieldList[i]]) {
+                filterNumberValue = filterDuplicate[columnFieldList[i]].replace(/[^0-9]/g, '').slice(0, 19)
             }
-        }   
-        
-        console.log(filterDuplicate,'filterDuplicate'); 
-        console.log(filter,'filterrrr'); 
-    
-        onFilterCustomers(filterDuplicate)
+            console.log(filterNumberValue, 'filterNumberValue');
+            console.log(filter[columnFieldList[i]], 'filter[columnFieldList[i]]');
+            filter[columnFieldList[i]] = filterNumberValue
+
+            if (filterNumberValue) {
+                filterDuplicate[columnFieldList[i]] = { _eq: filterNumberValue }
+            } else {
+                filterDuplicate[columnFieldList[i]] = { _eq: null }
+            }
+
+            console.log(filterNumberValue, 'filterNumberValue');
+        }else{
+            filterDuplicate[columnFieldList[i]] = { _ilike: '%' + filterDuplicate[columnFieldList[i]] + '%' } 
+        }
+    }
+
+    console.log(filterDuplicate, 'filterDuplicate');
+    console.log(filter, 'filterrrr');
+    onFilterCustomers(filterDuplicate)
 }
 
 // const getFilteredQuery = (filter:ObjectType, filterValue: string, filterColumnField: string) => {
@@ -48,7 +54,7 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
 //     // const filterValueToNumber = filterValue.replace(/[^0-9]/g, '').slice(0,9)
 //     // numberValueReplaced.length = 9 
 //     console.log(filterValueToNumber,'filterValueToNumber'); 
-    
+
 //     filter.seq = filterValueToNumber
 //     console.log(filterValueToNumber,'numberValue'); 
 

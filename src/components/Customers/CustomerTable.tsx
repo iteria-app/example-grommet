@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Grommet, DataTable, Pagination, Text } from 'grommet'
+import { Box, Grommet, DataTable, Pagination, Text, TextInput } from 'grommet'
 import { FormattedDate } from 'react-intl'
 import { useIntl } from "react-intl";
 import { sortCustomers } from './operations/sort'
@@ -42,6 +42,7 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
                 property: 'createdAt',
                 header: <Text>timeStamp</Text>,
                 primary: true,
+                // filterOperator: ,
                 render: (customer) => (
                   <FormattedDate value={new Date(customer.createdAt)} />
                 ),
@@ -65,7 +66,9 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
               {
                 property: 'name',
                 header: <Text>name</Text>,
-                sortable: false
+                sortable: false,
+                search: true
+
               },
               {
                 property: 'manager',
@@ -114,6 +117,16 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
           <CustomerLoading />
         }
       </Box>
+      {/* <Box id="myInput"> */}
+        <TextInput
+          // label='Number'
+          type='tel'
+        // value={item?.value || ''}
+        // inputProps={{ maxLength: maxLength() }}
+        // onChange={handleFilterChange}
+        />
+      {/* </Box> */}
+
       <CustomerPagination page={page} pageSize={pageSize} handlePage={handlePage} totalCustomers={totalCustomers} />
     </Grommet>
   )
