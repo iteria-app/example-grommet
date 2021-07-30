@@ -36,20 +36,18 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
                     filterNumberValue = floatReplaceValue(graphqlQuery[columnFieldList[i]])
                 }
             }
+            // setFilterNumberValue(graphqlQuery, columnFieldList, i, includesInteger, filterNumberValue)
+
             console.log(filterNumberValue, 'filterNumberValue');
             console.log(filter[columnFieldList[i]], 'filter[columnFieldList[i]]');
 
             filter[columnFieldList[i]] = filterNumberValue
 
-            if (filterNumberValue) {
-                graphqlQuery[columnFieldList[i]] = { _eq: filterNumberValue }
-            } else {
-                graphqlQuery[columnFieldList[i]] = { _eq: null }
-            }
+            setNumberQuery(filterNumberValue, graphqlQuery, columnFieldList, i)
 
             console.log(filterNumberValue, 'filterNumberValue');
         } else {
-            setStringFilterValue(i, columnFieldList, graphqlQuery)
+            setStringQuery(i, columnFieldList, graphqlQuery)
         }
     }
 
@@ -58,17 +56,35 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
     onFilterCustomers(graphqlQuery)
 }
 
-const intReplaceValue = (filterValue: any) => {
+const intReplaceValue = (filterValue: string) => {
     return filterValue.replace(/[^0-9]/g, '').slice(0, 19)
 }
 
-const floatReplaceValue = (filterValue: any) => {
+const floatReplaceValue = (filterValue: string) => {
     return filterValue.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1')
 }
 
-const setStringFilterValue = (i: any, columnFieldList: any, graphqlQuery: any) => {
+const setStringQuery = (i: number, columnFieldList: ObjectType, graphqlQuery: ObjectType) => {
     graphqlQuery[columnFieldList[i]] = { _ilike: '%' + graphqlQuery[columnFieldList[i]] + '%' }
 }
+
+const setNumberQuery = (filterNumberValue: string | null, graphqlQuery: ObjectType, columnFieldList: ObjectType, i: any) => {
+    if (filterNumberValue) {
+        graphqlQuery[columnFieldList[i]] = { _eq: filterNumberValue }
+    } else {
+        graphqlQuery[columnFieldList[i]] = { _eq: null }
+    }
+}
+
+// const setFilterNumberValue = (graphqlQuery: ObjectType, columnFieldList: ObjectType, i: any, includesInteger: boolean, filterNumberValue: any) => {
+//     if (graphqlQuery[columnFieldList[i]]) {
+//         if (includesInteger) {
+//             filterNumberValue = intReplaceValue(graphqlQuery[columnFieldList[i]])
+//         } else {
+//             filterNumberValue = floatReplaceValue(graphqlQuery[columnFieldList[i]])
+//         }
+//     }
+// }
 
 // const numberColumn = (graphqlQuery, columnFieldList) =>{
 //     let filterNumberValue = null
