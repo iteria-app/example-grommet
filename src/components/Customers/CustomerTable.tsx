@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { Box, Grommet, DataTable, Text } from 'grommet'
+import { Checkmark, Close } from 'grommet-icons';
 import { useIntl } from "react-intl";
 import { sortCustomers } from './operations/sort'
 import { filterDataGrid } from './operations/filter'
@@ -37,14 +38,14 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
                 primary: true,
                 render: (customer) => (
                   intl.formatDate(customer.createdAt)
-                ),
+                )
               },
               {
                 property: 'timeStamp2',
                 header: <Text>timeStamp2</Text>,
                 render: (customer) => (
                   intl.formatDate(customer.createdAt) + ', ' + intl.formatTime(customer.createdAt, { timeZone: 'Europe/Athens' })
-                ),
+                )
               },
               {
                 property: 'id',
@@ -53,18 +54,22 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
               {
                 property: 'seq',
                 header: <Text>Int</Text>,
-                search: true
+                search: true,
+                align: 'center'
               },
               {
                 property: 'name',
                 header: <Text>name</Text>,
                 sortable: false,
                 search: true
-
               },
               {
                 property: 'manager',
-                header: <Text>manager</Text>
+                header: <Text>manager</Text>,
+                render: (customer) => (
+                  customer.manager ? <Checkmark color='plain' size='small' /> : <Close color='plain' size='small' />
+                ),
+                align: 'center'
               },
               {
                 property: 'bigInteger',
@@ -78,14 +83,15 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
               {
                 property: 'float',
                 header: <Text>float</Text>,
-                search: true
+                search: true,
+                align: 'center'
               },
               {
                 property: 'jsonB',
                 header: <Text>jsonB</Text>,
                 render: (customer) => (
                   JSON.stringify(customer.jsonB)
-                ),
+                )
               },
               {
                 property: 'time',
