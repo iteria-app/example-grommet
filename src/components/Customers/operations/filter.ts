@@ -47,14 +47,6 @@ const setNumberOrStringGraphQuery = (filter: ObjectType, columnFieldList: string
 const setNumberGraphQuery = (graphqlQuery: any, columnField: any, includesInteger: any, filter: any) => {
     const filterNumberValue: any = { value: null }
 
-    if (graphqlQuery[columnField]) {
-        if (includesInteger) {
-            filterNumberValue.value = intReplaceValue(graphqlQuery[columnField], columnField)
-        } else {
-            filterNumberValue.value = floatReplaceValue(graphqlQuery[columnField])
-        }
-    }
-    
     setfilterNumberValue(columnField, graphqlQuery, includesInteger, filterNumberValue)
     console.log(filterNumberValue, 'filterNumberValue');
 
