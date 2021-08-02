@@ -11,9 +11,7 @@ export const CustomersLoader: React.FC = () => {
   const [result] = useFilterCustomerGridDataQuery({
     variables: { where: filter, limit: pageSize, offset: offset, order_by: sort }
   })
-  console.log(page,'page'); 
-  console.log(pageSize,'pageSize'); 
-  console.log(offset,'offset'); 
+
   const { data, error } = result
 
   const totalCustomers: number | null = data?.customerAggregate?.aggregate?.count || null

@@ -1,14 +1,13 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import { Box, Grommet, DataTable, Text } from 'grommet'
 import { FormattedDate } from 'react-intl'
 import { useIntl } from "react-intl";
 import { sortCustomers } from './operations/sort'
-import { ObjectString } from './types'
+import { filterDataGrid } from './operations/filter'
 import { tableTheme } from './components/tableTheme'
 import { CustomerLoading } from './components/CustomerLoading'
 import { CustomerPagination } from './components/CustomerPagination';
-
-import { filterDataGrid } from './operations/filter'
+import { ObjectString } from './types'
 
 export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onChangePageCustomers, page, offset, pageSize, onPageSize, onFilterCustomers, totalCustomers }) => {
   const intl = useIntl();
@@ -23,7 +22,7 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
     onChangePageCustomers(pageNumber)
   };
 
-  const handleFilter = React.useCallback((filter) => {
+  const handleFilter = useCallback((filter) => {
     filterDataGrid(filter, onFilterCustomers, onChangePageCustomers)
 
   }, [onFilterCustomers, onChangePageCustomers]);

@@ -64,7 +64,7 @@ const setNumberGraphQuery = (filter: ObjectType, graphqlQuery: ObjectType, colum
     console.log(filterNumberValue, 'filterNumberValue');
 }
 
-const setStringGraphQuery = (graphqlQuery: ObjectType, columnField: any) => {
+const setStringGraphQuery = (graphqlQuery: ObjectType, columnField: string) => {
     graphqlQuery[columnField] = { _ilike: '%' + graphqlQuery[columnField] + '%' }
 }
 
