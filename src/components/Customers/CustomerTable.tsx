@@ -12,12 +12,10 @@ import { ObjectString } from './types'
 export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onChangePageCustomers, page, offset, pageSize, onPageSize, onFilterCustomers, totalCustomers }) => {
   const intl = useIntl();
   const handleSortCustomers = (sort: ObjectString) => {
-    console.log(sort, 'sort from customerTable');
     sortCustomers(sort, onSortCustomers)
   };
 
   const handlePage = (page: ObjectString) => {
-    console.log(page?.page, 'page.page')
     const pageNumber = page?.page
     onChangePageCustomers(pageNumber)
   };

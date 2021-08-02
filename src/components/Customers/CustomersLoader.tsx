@@ -31,7 +31,6 @@ export const CustomersLoader: React.FC = () => {
   }
 
   const onFilterCustomers = (query: object) => {
-    console.log(query,'query'); 
     setFilter(query)
   }
 
