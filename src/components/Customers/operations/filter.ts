@@ -13,18 +13,6 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
     setCurrentPageToOne(onChangePageCustomers)
 }
 
-const getColumnFieldList = (filter: ObjectType) => {
-    return Object.keys(filter)
-}
-
-const integerColumnsList = () => {
-    return ['seq', 'bigInteger']
-}
-
-const decimalColumnsList = () => {
-    return ['float']
-}
-
 const setNumberOrStringGraphQuery = (filter: ObjectType, graphqlQuery: ObjectType) => {
     const columnFieldList = getColumnFieldList(filter)
     columnFieldList.forEach(columnField => {
@@ -43,6 +31,17 @@ const setNumberOrStringGraphQuery = (filter: ObjectType, graphqlQuery: ObjectTyp
     })
 }
 
+const getColumnFieldList = (filter: ObjectType) => {
+    return Object.keys(filter)
+}
+
+const integerColumnsList = () => {
+    return ['seq', 'bigInteger']
+}
+
+const decimalColumnsList = () => {
+    return ['float']
+}
 
 const setNumberOrString = (query: TypeNumberOrString) => {
     if (query.includesInteger || query.includesDecimal) {
@@ -64,6 +63,11 @@ const setNumberGraphQuery = (filter: ObjectType, graphqlQuery: ObjectType, colum
 
     console.log(filterNumberValue, 'filterNumberValue');
 }
+
+const setStringGraphQuery = (graphqlQuery: ObjectType, columnField: any) => {
+    graphqlQuery[columnField] = { _ilike: '%' + graphqlQuery[columnField] + '%' }
+}
+
 const setfilterNumberValue = (graphqlQuery: ObjectType, columnField: string, includesInteger: boolean, filterNumberValue: FilterNumberValue) => {
     if (graphqlQuery[columnField]) {
         if (includesInteger) {
@@ -87,10 +91,6 @@ const maxLengthInput = (columnField: string) => {
 
 const floatReplaceValue = (filterValue: string) => {
     return filterValue.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1')
-}
-
-const setStringGraphQuery = (graphqlQuery: ObjectType, columnField: any) => {
-    graphqlQuery[columnField] = { _ilike: '%' + graphqlQuery[columnField] + '%' }
 }
 
 const setNumberQuery = (filterNumberValue: FilterNumberValue | null) => {

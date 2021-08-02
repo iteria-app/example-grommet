@@ -40,7 +40,7 @@ export const CustomersLoader: React.FC = () => {
 
   return (
     <div>
-      <CustomersTable customers={data?.customers} totalCustomers={totalCustomers} onChangePageCustomers={onChangePageCustomers} offset={offset} page={page} onPageSize={onPageSize} onSortCustomers={onSortCustomers} onFilterCustomers={onFilterCustomers} pageSize={pageSize}/>
+      <CustomersTable customers={data?.customers} totalCustomers={totalCustomers} offset={offset} page={page} onPageSize={onPageSize} onSortCustomers={onSortCustomers} onFilterCustomers={onFilterCustomers} pageSize={pageSize} onChangePageCustomers={onChangePageCustomers}/>
     </div>
   )
 }

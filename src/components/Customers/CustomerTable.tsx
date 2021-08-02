@@ -13,7 +13,6 @@ import { filterDataGrid } from './operations/filter'
 
 export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onChangePageCustomers, page, offset, pageSize, onPageSize, onFilterCustomers, totalCustomers }) => {
   const intl = useIntl();
-
   const handleSortCustomers = (sort: ObjectString) => {
     console.log(sort, 'sort from customerTable');
     sortCustomers(sort, onSortCustomers)
@@ -118,17 +117,7 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
           <CustomerLoading />
         }
       </Box>
-      {/* <Box id="myInput"> */}
-        <TextInput
-          // label='Number'
-          type='tel'
-        // value={item?.value || ''}
-        // inputProps={{ maxLength: maxLength() }}
-        // onChange={handleFilterChange}
-        />
-      {/* </Box> */}
-
-      <CustomerPagination page={page} pageSize={pageSize} handlePage={handlePage} totalCustomers={totalCustomers} />
+      <CustomerPagination page={page} pageSize={pageSize} offset={offset} onPageSize={onPageSize} handlePage={handlePage} totalCustomers={totalCustomers} onChangePageCustomers={onChangePageCustomers}/>
     </Grommet>
   )
 }
