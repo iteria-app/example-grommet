@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Grommet, DataTable, Pagination, Text, TextInput } from 'grommet'
+import { Box, Grommet, DataTable, Text } from 'grommet'
 import { FormattedDate } from 'react-intl'
 import { useIntl } from "react-intl";
 import { sortCustomers } from './operations/sort'
@@ -8,7 +8,6 @@ import { tableTheme } from './components/tableTheme'
 import { CustomerLoading } from './components/CustomerLoading'
 import { CustomerPagination } from './components/CustomerPagination';
 
-// import { filterDataGrid, getFilterData, numberColumnType, uuidColumnType } from './operations/filter'
 import { filterDataGrid } from './operations/filter'
 
 export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onChangePageCustomers, page, offset, pageSize, onPageSize, onFilterCustomers, totalCustomers }) => {
@@ -26,7 +25,6 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
 
   const handleFilter = React.useCallback((filter) => {
     filterDataGrid(filter, onFilterCustomers, onChangePageCustomers)
-    // onFilterCustomers(o10)
 
   }, [onFilterCustomers, onChangePageCustomers]);
 
@@ -41,7 +39,6 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
                 property: 'createdAt',
                 header: <Text>timeStamp</Text>,
                 primary: true,
-                // filterOperator: ,
                 render: (customer) => (
                   <FormattedDate value={new Date(customer.createdAt)} />
                 ),
@@ -108,7 +105,6 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
               },
             ]}
             data={customers}
-            // placeholder={!customers ? loading() : null}
             onSort={handleSortCustomers}
             onSearch={handleFilter}
             resizeable

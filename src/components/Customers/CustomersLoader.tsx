@@ -14,7 +14,7 @@ export const CustomersLoader: React.FC = () => {
   console.log(page,'page'); 
   console.log(pageSize,'pageSize'); 
   console.log(offset,'offset'); 
-  const { data, error, fetching } = result
+  const { data, error } = result
 
   const totalCustomers: number | null = data?.customerAggregate?.aggregate?.count || null
 

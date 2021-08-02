@@ -1,4 +1,5 @@
 import { Blank } from 'grommet-icons';
+import { ObjectString } from '../types'
 
 const SortableIcon = () => (
   <Blank color="text-xweak" opacity="0.3">
@@ -10,21 +11,19 @@ const SortableIcon = () => (
 );
 
 export const tableTheme = {
-    global: {
-      font: {
-        family: 'Helvetica',
-      },
+  global: {
+    font: {
+      family: 'Helvetica',
     },
-    dataTable: {
-      header: {
-        color: 'text-strong',
-        //extend: ({ column }: { column: any }, { sort }: { sort: any }, { sortable }: { sortable: any }) => `
-        //@ts-ignore //TODO
-        extend: (column, sort, sortable) => `
+  },
+  dataTable: {
+    header: {
+      color: 'text-strong',
+      extend: (column: string, sort: ObjectString, sortable: ObjectString) => `
             ${sortable &&
-          sort &&
-          sort.property !== column &&
-          `
+        sort &&
+        sort.property !== column &&
+        `
                 :hover {
                   svg {
                     opacity: 100%;
@@ -32,9 +31,9 @@ export const tableTheme = {
                 }
               `}
            `,
-      },
-      icons: {
-        sortable: SortableIcon,
-      },
     },
-  };
+    icons: {
+      sortable: SortableIcon,
+    },
+  },
+};
