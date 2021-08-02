@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React, { useCallback } from 'react'
 import { Box, Grommet, DataTable, Text } from 'grommet'
 import { FormattedDate } from 'react-intl'
 import { useIntl } from "react-intl";
@@ -33,14 +33,13 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
         {customers
           ?
           <DataTable
-            // pad={""}
             columns={[
               {
                 property: 'createdAt',
                 header: <Text>timeStamp</Text>,
                 primary: true,
                 render: (customer) => (
-                  <FormattedDate value={new Date(customer.createdAt)} />
+                  intl.formatDate(customer.createdAt)
                 ),
               },
               {
@@ -107,13 +106,14 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
             data={customers}
             onSort={handleSortCustomers}
             onSearch={handleFilter}
+            pad={'8px'}
             resizeable
           />
           :
           <CustomerLoading />
         }
       </Box>
-      <CustomerPagination page={page} pageSize={pageSize} offset={offset} onPageSize={onPageSize} handlePage={handlePage} totalCustomers={totalCustomers} onChangePageCustomers={onChangePageCustomers}/>
+      <CustomerPagination page={page} pageSize={pageSize} offset={offset} onPageSize={onPageSize} handlePage={handlePage} totalCustomers={totalCustomers} onChangePageCustomers={onChangePageCustomers} />
     </Grommet>
   )
 }

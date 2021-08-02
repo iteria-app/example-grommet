@@ -11,6 +11,11 @@ const SortableIcon = () => (
 );
 
 export const tableTheme = {
+  text: {
+    medium: {
+      size: '14px'
+    }
+  },
   dataTable: {
     header: {
       extend: ({ column, sort, sortable }: { column: string, sort: ObjectString, sortable: ObjectString }) => `

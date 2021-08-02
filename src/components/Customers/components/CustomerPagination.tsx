@@ -23,6 +23,7 @@ export const CustomerPagination: React.FC<any> = ({ page, pageSize, offset, hand
           step={pageSize}
           onChange={handlePage}
           margin="0 auto"
+          size={'small'}
         />
       </Box>
       <Box width="100px" margin="0 auto">
@@ -31,6 +32,7 @@ export const CustomerPagination: React.FC<any> = ({ page, pageSize, offset, hand
           value={pageSize.toString()}
           onChange={({ option }) => handlePageSize(option)}
           margin="30px 0 0"
+          size={'small'}
         />
       </Box>
     </>
