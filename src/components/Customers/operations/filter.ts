@@ -3,9 +3,6 @@ import { FilterNumberValue, TypeNumberOrString, ObjectString, ObjectType } from 
 export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: ObjectString) => void, onChangePageCustomers: () => void) => {
     const graphqlQuery = { ...filter }
     setNumberOrStringGraphQuery(filter, graphqlQuery)
-
-    console.log(graphqlQuery, 'graphqlQuery');
-    console.log(filter, 'filterrrr');
     onFilterCustomers(graphqlQuery)
     setCurrentPageToOne(onChangePageCustomers)
 }
@@ -13,8 +10,6 @@ export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: Ob
 const setNumberOrStringGraphQuery = (filter: ObjectType, graphqlQuery: ObjectType) => {
     const columnFieldList = getColumnFieldList(filter)
     columnFieldList.forEach(columnField => {
-        console.log(columnField, 'columnField');
-
         const includesDecimal = decimalColumnsList().includes(columnField)
         const includesInteger = integerColumnsList().includes(columnField)
 
