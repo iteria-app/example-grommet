@@ -62,7 +62,7 @@ const setNumberGraphQuery = (graphqlQuery: any, columnField: any, includesIntege
     
     if (graphqlQuery[columnField]) {
         if (includesInteger) {
-            filterNumberValue.value = intReplaceValue(graphqlQuery[columnField])
+            filterNumberValue.value = intReplaceValue(graphqlQuery[columnField], columnField)
         } else {
             filterNumberValue.value = floatReplaceValue(graphqlQuery[columnField])
         }
@@ -76,14 +76,18 @@ const setNumberGraphQuery = (graphqlQuery: any, columnField: any, includesIntege
     console.log(filterNumberValue, 'filterNumberValue');
 }
 
-// const maxLength = () =>{
-//     if()
-// }
 
-const intReplaceValue = (filterValue: string) => {
+
+const intReplaceValue = (filterValue: string, columnField: string) => {
     console.log(filterValue,'filterValue'); 
-    
-    return filterValue.replace(/[^0-9]/g, '').slice(0, 19)
+    return filterValue.replace(/[^0-9]/g, '').slice(0, maxLengthInput(columnField))
+}
+
+const maxLengthInput = (columnField: string) =>{
+    if(columnField === 'bigInteger'){
+        return 19
+    }
+    return 9
 }
 
 const floatReplaceValue = (filterValue: string) => {
