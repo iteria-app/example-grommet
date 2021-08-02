@@ -33,6 +33,7 @@ export const CustomersTable: React.FC<any> = ({ customers, onSortCustomers, onCh
         {customers
           ?
           <DataTable
+            // pad={""}
             columns={[
               {
                 property: 'createdAt',

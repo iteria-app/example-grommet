@@ -11,26 +11,20 @@ const SortableIcon = () => (
 );
 
 export const tableTheme = {
-  global: {
-    font: {
-      family: 'Helvetica',
-    },
-  },
   dataTable: {
     header: {
-      color: 'text-strong',
-      extend: (column: string, sort: ObjectString, sortable: ObjectString) => `
-            ${sortable &&
+      extend: ({ column, sort, sortable }: { column: string, sort: ObjectString, sortable: ObjectString }) => `
+          ${sortable &&
         sort &&
         sort.property !== column &&
         `
-                :hover {
-                  svg {
-                    opacity: 100%;
-                  }
+              :hover {
+                svg {
+                  opacity: 100%;
                 }
-              `}
-           `,
+              }
+            `}
+         `,
     },
     icons: {
       sortable: SortableIcon,
