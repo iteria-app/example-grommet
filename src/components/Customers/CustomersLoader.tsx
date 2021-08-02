@@ -24,7 +24,6 @@ export const CustomersLoader: React.FC = () => {
 
   const onChangePageCustomers = (page: number) => {
     setPage(page - 1)
-    console.log(page, 'page');
   }
 
   const onPageSize = (pageSize: number) => {

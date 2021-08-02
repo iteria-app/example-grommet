@@ -1,10 +1,7 @@
 import { FilterNumberValue, TypeNumberOrString, ObjectString, ObjectType } from '../types'
 
 export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: ObjectString) => void, onChangePageCustomers: () => void) => {
-    console.log(filter, 'filter');
-
     const graphqlQuery = { ...filter }
-
     setNumberOrStringGraphQuery(filter, graphqlQuery)
 
     console.log(graphqlQuery, 'graphqlQuery');
@@ -60,8 +57,6 @@ const setNumberGraphQuery = (filter: ObjectType, graphqlQuery: ObjectType, colum
     filter[columnField] = filterNumberValue?.value
 
     graphqlQuery[columnField] = setNumberQuery(filterNumberValue)
-
-    console.log(filterNumberValue, 'filterNumberValue');
 }
 
 const setStringGraphQuery = (graphqlQuery: ObjectType, columnField: string) => {
