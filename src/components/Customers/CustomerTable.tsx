@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react'
 import { Box, Grommet, DataTable, Text } from 'grommet'
-import { FormattedDate } from 'react-intl'
 import { useIntl } from "react-intl";
 import { sortCustomers } from './operations/sort'
 import { filterDataGrid } from './operations/filter'

@@ -88,7 +88,6 @@ const setNumberQuery = (filterNumberValue: FilterNumberValue | null) => {
     return { _eq: null }
 }
 
-
 export const setCurrentPageToOne = (onChangePageCustomers: (event: number) => void) => {
     onChangePageCustomers(1)
 }
