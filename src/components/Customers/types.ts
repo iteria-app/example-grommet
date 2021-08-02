@@ -9,3 +9,5 @@ export interface ObjectType {
 export interface FilterNumberValue {
     value: | string | null
 }
+
+export type TypeNumberOrString = { filter: ObjectType, includesInteger: boolean, includesDecimal: boolean, graphqlQuery: ObjectType, columnField: string }

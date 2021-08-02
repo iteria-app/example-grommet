@@ -1,4 +1,4 @@
-import { ObjectString, ObjectType, FilterNumberValue } from '../types'
+import { FilterNumberValue, TypeNumberOrString, ObjectString, ObjectType } from '../types'
 
 export const filterDataGrid = (filter: ObjectType, onFilterCustomers: (event: ObjectString) => void, onChangePageCustomers: () => void) => {
     console.log(filter, 'filter');
@@ -33,16 +33,23 @@ const setNumberOrStringGraphQuery = (filter: ObjectType, graphqlQuery: ObjectTyp
         const includesDecimal = decimalColumnsList().includes(columnField)
         const includesInteger = integerColumnsList().includes(columnField)
 
-        setNumberOrString(filter, graphqlQuery, columnField, includesInteger, includesDecimal)
+        setNumberOrString({
+            filter: filter,
+            includesInteger: includesInteger,
+            includesDecimal: includesDecimal,
+            graphqlQuery: graphqlQuery,
+            columnField: columnField
+        })
     })
 }
 
-const setNumberOrString = (filter: ObjectType, graphqlQuery: ObjectType, columnField: string, includesInteger: boolean, includesDecimal: boolean ) => {
-    if (includesInteger || includesDecimal) {
-        setNumberGraphQuery(filter, graphqlQuery, columnField, includesInteger)
+
+const setNumberOrString = (query: TypeNumberOrString) => {
+    if (query.includesInteger || query.includesDecimal) {
+        setNumberGraphQuery(query.filter, query.graphqlQuery, query.columnField, query.includesInteger)
     } else {
-        setStringGraphQuery(graphqlQuery, columnField)
-    } 
+        setStringGraphQuery(query.graphqlQuery, query.columnField)
+    }
 }
 
 const setNumberGraphQuery = (filter: ObjectType, graphqlQuery: ObjectType, columnField: string, includesInteger: boolean) => {
