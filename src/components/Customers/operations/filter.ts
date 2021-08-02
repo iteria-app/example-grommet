@@ -52,8 +52,6 @@ const setNumberGraphQuery = (filter: ObjectType, graphqlQuery: ObjectType, colum
     const filterNumberValue: FilterNumberValue = { value: null }
 
     setfilterNumberValue(graphqlQuery, columnField, includesInteger, filterNumberValue)
-    console.log(filterNumberValue, 'filterNumberValue');
-
     filter[columnField] = filterNumberValue?.value
 
     graphqlQuery[columnField] = setNumberQuery(filterNumberValue)
